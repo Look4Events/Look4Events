@@ -4,11 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Look4Events</title>
-
-    <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
-    </environment>
+    <link rel="stylesheet" href="~/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="manifest" href="/manifest.json">
+    @*<environment include="Development">
+            <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+            <link rel="stylesheet" href="~/css/site.css" />
+        </environment>*@
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
@@ -34,6 +36,16 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
                     <li><a asp-area="" asp-controller="Events" asp-action="Index">Events</a></li>
+                    <li><a asp-area="" asp-controller="" asp-action="">
+                        <form>
+                            <p align="right">
+                                <input type="text" size="12" name="miReloj" id="miReloj" />
+                            </p>
+                        </form>
+                        <script>
+                            let r = setInterval("verHora()", 500);
+                        </script>
+                    </a></li>
                 </ul>
                 <partial name="_LoginPartial" />
             </div>

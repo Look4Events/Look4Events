@@ -146,3 +146,44 @@ and also iPads specifically.
             content: "Arbitrary Data";
         }
 }
+
+/*reloj*/
+#miReloj {
+    font-family: 'Arial Rounded MT';
+    text-align: center;
+    text-decoration: overline;
+    border-radius: 10px;
+    text-size-adjust: auto;
+    box-sizing: content-box;
+    font-size: large;
+    background-color: transparent;
+    background-clip: border-box;
+    position: absolute;
+    top: 1px;
+    left: 0;
+}
+
+/*tablas formato*/
+/* 
+Estilos genéricos para Desktops / Laptop 
+*/
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+/* Zebra striping */
+tr:nth-of-type(odd) {
+    background: #eee;
+}
+
+th {
+    background: #333;
+    color: white;
+    font-weight: bold;
+}
+
+td, th {
+    padding: 6px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
