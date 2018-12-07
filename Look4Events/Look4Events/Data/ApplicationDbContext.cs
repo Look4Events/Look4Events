@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Look4Events.Models;
 
 namespace Look4Events.Data
 {
@@ -12,5 +13,6 @@ namespace Look4Events.Data
             : base(options)
         {
         }
+        public DbSet<Usuario> Items { get; set; }
     }
 }
