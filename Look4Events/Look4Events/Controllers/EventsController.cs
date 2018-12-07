@@ -7,12 +7,15 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Look4Events.Data;
 using Look4Events.Models.Events;
+using Look4Events.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Look4Events.Controllers
 {
     public class EventsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<AppUser> _userManager;
 
         public EventsController(ApplicationDbContext context)
         {
