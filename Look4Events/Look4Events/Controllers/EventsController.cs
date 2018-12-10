@@ -50,9 +50,9 @@ namespace Look4Events.Controllers
                         {
                             Venue eventVenue = venue.ToObject<Venue>();
 
-                            //JToken location = venues["location"].Children().ToList();
-                            //Location location = location.ToObject<Location>();
-                            
+                            JToken locationJson = venue["location"];
+                            Location location = locationJson.ToObject<Location>();
+
 
                             eventVenues.Add(eventVenue);
                         }

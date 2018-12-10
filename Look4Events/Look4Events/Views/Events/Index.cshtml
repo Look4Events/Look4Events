@@ -22,7 +22,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.Url)
             </th>
-            <th></th>
+            <th>
+                Latitud
+            </th>
+            <th>
+                Longitud
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -36,6 +41,13 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Url)
+            </td>
+            <td>
+                @* CUIDADO estamos cogiendo latitud y longitud solo del primer venue del event, habria que hacer un foreach o algo *@
+                @Html.DisplayFor(modelItem => item.Venues.First().Location.Latitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Venues.First().Location.Longitude)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
