@@ -16,6 +16,6 @@ namespace Look4Events.Data
             : base(options)
         {
         }
-        public DbSet<Look4Events.Models.Events.Events> Events { get; set; }
+        public DbSet<Look4Events.Models.Events.Event> Events { get; set; }
     }
 }

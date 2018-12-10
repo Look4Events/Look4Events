@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Look4Events.Models
+namespace Look4Events.Models.Events
 {
-    public class State
+    public class Venue
     {
-        public string StateCode { get; set; }
         public string Name { get; set; }
-
     }
 }

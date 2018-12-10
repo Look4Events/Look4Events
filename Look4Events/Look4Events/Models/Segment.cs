@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Look4Events.Models
+namespace Look4Events.Models.Events
 {
-    public class Zone
+    public class Segment
     {
-        public Boolean Fixed { get; set; }
         public string Id { get; set; }
+        public string Name { get; set; }
     }
 }

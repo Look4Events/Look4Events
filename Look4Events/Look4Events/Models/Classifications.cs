@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Look4Events.Models
+namespace Look4Events.Models.Events
 {
-    public class Market
+    public class Classifications
     {
-        public string id { get; set; }
+        public Segment Segment { get; set; }
     }
 }
