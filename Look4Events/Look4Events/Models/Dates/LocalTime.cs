@@ -7,6 +7,7 @@ namespace Look4Events.Models.Events.Dates
 {
     public class LocalTime
     {
+        public string Id { get; set; }
         public Int32 MillisOfSecond { get; set; }
         public Int32 MillisOfDay { get; set; }
         public Int32 SecondOfMinute { get; set; }

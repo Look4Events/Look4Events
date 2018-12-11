@@ -7,6 +7,7 @@ namespace Look4Events.Models.Events
 {
     public class Venue
     {
+        public string Id { get; set; }
         public string Name { get; set; }
         public string PostalCode { get; set; }
         public City City { get; set; }
