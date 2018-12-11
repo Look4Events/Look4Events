@@ -69,14 +69,18 @@ namespace Look4Events.Areas.Identity.Pages.Account
             [Required]
             [DataType(DataType.Text)]
             [Display(Name = "City")]
-            public string City { get; set; }
+            public string LugarDeOrigen { get; set; }
 
             [Required]
             [DataType(DataType.Text)]
             [Display(Name = "FechaNacimiento")]
             public DateTime FechaNacimiento { get; set; }
 
-
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Fecha de Registro")]
+            public DateTime FechaRegistro = DateTime.Today;
+            
         }
 
         public void OnGet(string returnUrl = null)
