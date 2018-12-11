@@ -1,0 +1,9 @@
+﻿
+CREADOS 3 ROLES:
+1	admin	
+2	buscoEventos	
+3	publicoEventos
+
+Se pone en el formulario de registro un dropdown para seleccionar los roles 2 o 3 al registrarse
+
+---------------->>>>   FALTARÍA AñADIR POR DEFECTO QUE AUTOMÁTICAMENTE se asigne el rol "2" a cualquier usuario no registrado
