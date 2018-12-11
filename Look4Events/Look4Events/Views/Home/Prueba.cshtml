@@ -85,6 +85,7 @@
                             <div class="column">imagen</div>
                         </section>
                     </div>
+                    </div>
 
                     <TABLE BORDER>
                         <TR class="info">
@@ -99,11 +100,15 @@
                                 @Html.DisplayNameFor(model => model.Url)
                             </th>
                             <th>
+                                lugar
+                            </th>
+                            <th>
                                 Imagenes
                             </th>
                             <th>
-                                
+
                             </th>
+
 
                         </TR>
                         @foreach (var item in Model)
@@ -120,7 +125,10 @@
                                 @Html.DisplayFor(modelItem => item.Url)
                             </td>
                             <TD>
-                                Foto/imagen de evento
+                                Lugar del evento
+                            </TD>
+                            <TD>
+                                <img src="@Html.DisplayFor(modelItem => item.Url)" class="img-responsive" alt="Imagen responsive">
                             </TD>
 
 
