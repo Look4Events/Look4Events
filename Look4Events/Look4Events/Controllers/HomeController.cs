@@ -10,6 +10,12 @@ namespace Look4Events.Controllers
 {
     public class HomeController : Controller
     {
+        //prueba para usar el otro link
+        public async Task<IActionResult> Prueba()
+        {
+            return View();
+        } 
+        //#################################################
         public IActionResult Index()
         {
             return View();

@@ -93,7 +93,7 @@ namespace Look4Events.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var user = new AppUser { UserName = Input.Email, Email = Input.Email, Rol = Input.Rol, Name = Input.Name, City = Input.City, FechaNacimiento = Input.FechaNacimiento };
+                var user = new AppUser { UserName = Input.Email, Email = Input.Email, Rol = Input.Rol, Name = Input.Name, LugarDeOrigen = Input.LugarDeOrigen, FechaNacimiento = Input.FechaNacimiento };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

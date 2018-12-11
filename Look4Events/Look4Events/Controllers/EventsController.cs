@@ -23,6 +23,7 @@ namespace Look4Events.Controllers
             _context = context;
         }
 
+
         // GET: Events
         public async Task<IActionResult> Index()
         {

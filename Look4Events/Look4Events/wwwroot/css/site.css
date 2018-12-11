@@ -298,7 +298,7 @@ button {
 select {
 }
 
-/*reloj
+/*reloj*/
 #miReloj {
     font-family: 'Arial Rounded MT';
     text-align: center;
@@ -312,4 +312,4 @@ select {
     position: absolute;
     top: 1px;
     left: 0;
-}*/
+}

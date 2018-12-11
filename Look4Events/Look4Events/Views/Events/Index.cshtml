@@ -10,7 +10,7 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table">
+@*<table">
     <thead>
         <tr>
             <th>
@@ -44,7 +44,7 @@
             </td>
             <td>
                 @* CUIDADO estamos cogiendo latitud y longitud solo del primer venue del event, habria que hacer un foreach o algo *@
-                @Html.DisplayFor(modelItem => item.Venues.First().Location.Latitude)
+                @*@Html.DisplayFor(modelItem => item.Venues.First().Location.Latitude)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Venues.First().Location.Longitude)
@@ -57,10 +57,10 @@
         </tr>
 }
     </tbody>
-</table>
+</table>*@
 
 
-<table>
+<table id="example" class="display" style="width:100%">
     <thead>
         <tr>
             <th>
@@ -72,7 +72,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Url)
             </th>
-            
+            <th>
+
+            </th>
         </tr>
     </thead>
 
@@ -90,7 +92,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Url)
                 </td>
-                
+
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
@@ -99,7 +101,10 @@
             </tr>
         }
 
-        </tbody>
-    </table>
+    </tbody>
+</table>
+<div>
+    <a asp-action="Index">Back to Index</a>
+</div>
 
 
