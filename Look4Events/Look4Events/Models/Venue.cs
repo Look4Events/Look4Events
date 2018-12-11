@@ -8,7 +8,7 @@ namespace Look4Events.Models.Events
     public class Venue
     {
         public string Name { get; set; }
-        public string postalCode { get; set; }
+        public string PostalCode { get; set; }
         public City City { get; set; }
         public Location Location { get; set; }
     }
