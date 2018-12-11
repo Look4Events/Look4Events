@@ -245,7 +245,7 @@ header {
     border: 1px solid gray;
     margin: 2px;
     padding: 10px;
-    &:first-child
+    &:first-child;
 
 {
     margin-left: 0;
@@ -299,17 +299,20 @@ select {
 }
 
 /*reloj*/
-#miReloj {
-    font-family: 'Arial Rounded MT';
-    text-align: center;
-    text-decoration: overline;
-    border-radius: 10px;
-    text-size-adjust: auto;
-    box-sizing: content-box;
-    font-size: large;
-    background-color: green;
-    background-clip: border-box;
-    position: absolute;
-    top: 1px;
-    left: 0;
-}
+    #miReloj {
+        font-family: 'Arial Rounded MT';
+        text-align: center;
+        text-decoration: overline;
+        border-radius: 10px;
+        text-size-adjust: auto;
+        box-sizing: content-box;
+        font-size: large;
+        background-color: green;
+        background-clip: border-box;
+        position: absolute;
+        top: 1px;
+        left: 0;
+        
+    }
+
+
