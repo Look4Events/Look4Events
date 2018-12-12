@@ -72,7 +72,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Url)
             </th>
-            <th>
+            <th class="hidden">
 
             </th>
         </tr>
@@ -90,10 +90,10 @@
                     @Html.DisplayFor(modelItem => item.Type)
                 </th>
                 <th>
-                    @Html.DisplayFor(modelItem => item.Url)
+                    <a href=" @Html.DisplayFor(modelItem => item.Url)" target="_blank">link to buy</a>
                 </th>
 
-                <th>
+                <th class="hidden">
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                     <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>

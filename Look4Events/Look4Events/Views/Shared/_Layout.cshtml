@@ -19,6 +19,11 @@
 
 <body>
 
+
+    @*-----------------------------------------------------*@
+
+    @*-----------------------------------------------------*@
+
     @*++++++++++++++ BARRA MENU SUPERIOR // REGISTER // LOG IN +++++++++++++++++++++++++++++++++++++++*@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -80,6 +85,8 @@
     </div>
 
     @*ääääääääää_______template de tabla responsive______äääääääääääääääää*@
+    <div id="sidebar">@RenderSection("SideBar", required: false)</div>
+
     <div class="wrapper">
 
         <header>
@@ -93,15 +100,15 @@
                     <form role="search">
                         <div>
                             <input type="search" id="miBusqueda" name="q"
-                                   placeholder="Buscar en el sitio..."
+                                   placeholder="Buscar por keyword..."
                                    aria-label="Buscar en el contenido del sitio">
-                            <button onclick="getEvents">Buscar</button>
+                            <button onclick="initMap()">Buscar en mapa</button>
                         </div>
                     </form>
                 </p>
             </div>
 
-            <div class="column">
+            @*<div class="column">
                 <p class="custom-select">
                     <select class="form-group">
                         <option value="Categoria 1">Categoria 1</option>
@@ -110,28 +117,37 @@
                         <option value="Categoria 3">Categoria 3</option>
                     </select>
                 </p>
-            </div>
+            </div>*@
 
             <div class="column">
                 <p>
                     <form name="formulario">
-                        <!-- Botones de opción -->
-                        Tipo de vista: <input type="radio" name="TipoDeVista" value="verListado"> ver Listado
-                        <input type="radio" name="TipoDeVista" value="verMapa"> ver Mapa
+
+                        <input type="radio" name="TipoDeVista" value="verListado"> ver Listado<br />
+                        <input type="radio" name="TipoDeVista" value="verMapa"> ver Mapa<br />
                     </form>
                 </p>
-</div>
+            </div>
             <div class="column">
                 <p>
                     <select form-group>
-                        <option value="buscarEnBizkaia">Bizkaia</option>
-                        <option value="buscarEnAraba">Araba</option>
-                        <option value="buscarEnGipuzkoa">Gipuzkoa</option>
+                        <option value="buscarEnBilbao">Bilbao</option>
+                        @*<option value="buscarEnAraba">Araba</option>
+                        <option value="buscarEnGipuzkoa">Gipuzkoa</option>*@
                     </select>
                 </p>
             </div>
 
         </section>
+    </div>
+
+    <div class="social">
+        <ul>
+            <li id="facebook"><a href="http://www.facebook.com/falconmasters" target="_blank" class="icon-facebook"></a></li>
+            <li><a href="http://www.twitter.com/falconmasters" target="_blank" class="icon-twitter"></a></li>
+            <li><a href="http://www.googleplus.com/falconmasters" target="_blank" class="icon-googleplus"></a></li>
+            <li><a href="http://www.pinterest.com/falconmasters" target="_blank" class="icon-pinterest"></a></li>
+        </ul>
     </div>
 
     @*<div class="wrapper">
@@ -183,45 +199,48 @@
         </section>
         </div>*@
 
-        @*+++++++++++++++++++++++++++++++++++++++++++++++++++++*@
+    @*+++++++++++++++++++++++++++++++++++++++++++++++++++++*@
 
 
-        <div class="container body-content">
-            @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - Look4Events</p>
-            </footer>
-        </div>
-        @*<partial name="_CookieConsentPartial" />*@
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Look4Events</p>
+        </footer>
+    </div>
+    @*<partial name="_CookieConsentPartial" />*@
+    @*@RenderSection("MySection")*@
 
-        <environment include="Development">
-            <script src="~/lib/jquery/dist/jquery.js"></script>
-            <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-            <script src="~/js/site.js" asp-append-version="true"></script>
-        </environment>
-        <environment exclude="Development">
-            <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
-                    asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                    asp-fallback-test="window.jQuery"
-                    crossorigin="anonymous"
-                    integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
-            </script>
-            <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
-                    asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                    asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                    crossorigin="anonymous"
-                    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
-            </script>
-            <script src="~/js/site.min.js" asp-append-version="true"></script>
-        </environment>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-        @*Latest compiled and minified JavaScript
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>*@
-        <script src="~/js/site.js"></script>
-        @*@RenderSection("Scripts", required: false)*@
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    @*Latest compiled and minified JavaScript
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>*@
+    <script src="~/js/site.js"></script>
+    @*@RenderSection("Scripts", required: false)*@
 </body>
 </html>
 
