@@ -92,77 +92,51 @@ function showPosition(position) {
         win.focus();
     }
 }
+
+        // creo un div, les incluyo el titulo y el parrafo
+        let div = document.createElement("div");
+        div.setAttribute("class", "col-xs-4");
+        div.appendChild(elementoTitulo);
+        div.appendChild(elementoParrafo);
+
+document.getElementById("datosResults").appendChild(div);
+
+
 function showEvents(json) {
     for (let i = 0; i < json.page.size; i++) {
-        $("#events").append("<table id='example' class='display' style='width:100%'>"+ "<tr>"+
-            "<td>" + json._embedded.events[i].name +"</td >"+
+        $("#events").append("<table id='example' class='display' style='width:100%'>" +"<tr>"+
+            "<td>" + json._embedded.events[i].name + "</td >" +
             " ---- "+
             "<td>" + json._embedded.events[i]._embedded.venues[0].name + "</td >" +
             "----"+
-            "<td>" + json._embedded.events[i].dates.start.localDate +
+            "<td>" + json._embedded.events[i].dates.start.localDate + "</td >" +
             " ---- "+
-            "<td>" + json._embedded.events[i].dates.start.localTime +
+            "<td>" + json._embedded.events[i].dates.start.localTime + "</td >" +
             " ---- "+
-            "<td>" + json._embedded.events[i].classifications[0].segment.name +
+            "<td>" + json._embedded.events[i].classifications[0].segment.name + "</td >" +
             " ---- "+
-            "<td>" + json._embedded.events[i]._embedded.venues[0].type +
+            "<td>" + json._embedded.events[i]._embedded.venues[0].type + "</td >" +
             " ---- " +
-            "<td>" + json._embedded.events[i].url +
-            //"<td>" + json._embedded.events[i].url +
+            "<td>" + json._embedded.events[i].url + "</td >" +
             " ---- "+
-            "<td>" + json._embedded.events[i]._embedded.venues[0].postalCode +
+            "<td>" + json._embedded.events[i]._embedded.venues[0].postalCode + "</td >" +
             " ---- "+
-            "<td>" + json._embedded.events[i]._embedded.venues[0].city.name +
+            "<td>" + json._embedded.events[i]._embedded.venues[0].city.name + "</td >" +
             " ---- "+
-            "<td>" + json._embedded.events[i]._embedded.venues[0].state.name +
+            "<td>" + json._embedded.events[i]._embedded.venues[0].state.name + "</td >" +
             " ---- "+
-            "<td>" + json._embedded.events[i]._embedded.venues[0].country.name +
+            "<td>" + json._embedded.events[i]._embedded.venues[0].country.name + "</td >" +
             " ---- "+
-            "<td>" + json._embedded.events[i]._embedded.venues[0].address.line1 +
+            "<td>" + json._embedded.events[i]._embedded.venues[0].address.line1 + "</td >" +
             " ---- "+
-            "<td>" + json._embedded.events[i]._embedded.venues[0].location.longitude +
+            "<td>" + json._embedded.events[i]._embedded.venues[0].location.longitude + "</td >" +
             " ---- "+
-            "<td>" + json._embedded.events[i]._embedded.venues[0].location.latitude +
+            "<td>" + json._embedded.events[i]._embedded.venues[0].location.latitude + "</td >" +
             "</tr>" +
             " </table> "
-            //+"<td>" + <button id="volver" onclick="location.href='/Home/Prueba'">VistaPrueba</button> + "</td>"
             );
-
     }
 }
-//function showEvents(json) {
-//    for (let i = 0; i < json.page.size; i++) {
-//        $("#events").append(
-//            "<p>" + json._embedded.events[i].name +
-//            " ---- "
-//            + json._embedded.events[i]._embedded.venues[0].name +
-//            "----"
-//            + json._embedded.events[i].dates.start.localDate +
-//            " ---- "
-//            + json._embedded.events[i].dates.start.localTime +
-//            " ---- "
-//            + json._embedded.events[i].classifications[0].segment.name +
-//            " ---- "
-//            + json._embedded.events[i]._embedded.venues[0].type +
-//            " ---- "
-//            + json._embedded.events[i].url +
-//            " ---- "
-//            + json._embedded.events[i]._embedded.venues[0].postalCode +
-//            " ---- "
-//            + json._embedded.events[i]._embedded.venues[0].city.name +
-//            " ---- "
-//            + json._embedded.events[i]._embedded.venues[0].state.name +
-//            " ---- "
-//            + json._embedded.events[i]._embedded.venues[0].country.name +
-//            " ---- "
-//            + json._embedded.events[i]._embedded.venues[0].address.line1 +
-//            " ---- "
-//            + json._embedded.events[i]._embedded.venues[0].location.longitude +
-//            " ---- "
-//            + json._embedded.events[i]._embedded.venues[0].location.latitude +
-//            "</p>");
-//    }
-//}
 
 function initMap(position, json) {
     let mapDiv = document.getElementById('map');
@@ -194,8 +168,6 @@ function addMarker(map, event) {
     console.log(marker);
 }
 
-
-
 getLocation();
 
 //~~~~~~~~~~~ Radio Button ~~~~~~~~~~~~~~+:
@@ -223,3 +195,9 @@ getLocation();
 //}
 
 
+//------------ para prueba -----------------------------
+//function showEvents(json) {
+//    for (let i = 0; i < json.page.size; i++) {
+//        $("#events").append("<table id='example' class='display' style='width:100%'>" + "<tr>" +
+//            "<td>" + json._embedded.events[i].name + "</td >" +
+//            " ---- " +
