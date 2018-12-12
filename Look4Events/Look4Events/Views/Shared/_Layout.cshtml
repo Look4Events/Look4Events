@@ -84,9 +84,13 @@
         </header>
     </div>
 
-    @*ääääääääää_______template de tabla responsive______äääääääääääääääää*@
+
+
+    @*-----------------------------------sideBar------------------------------*@
     <div id="sidebar">@RenderSection("SideBar", required: false)</div>
 
+
+    @*ääääääääää_______template de tabla responsive______äääääääääääääääää*@
     <div class="wrapper">
 
         <header>
@@ -102,28 +106,28 @@
                             <input type="search" id="miBusqueda" name="q"
                                    placeholder="Buscar por keyword..."
                                    aria-label="Buscar en el contenido del sitio">
-                            <button onclick="initMap()">Buscar en mapa</button>
+                            <button onclick="initMap()">Buscar</button>
                         </div>
                     </form>
                 </p>
             </div>
 
             @*<div class="column">
-                <p class="custom-select">
-                    <select class="form-group">
-                        <option value="Categoria 1">Categoria 1</option>
-                        <option value="Categoria 2">Categoria 2</option>
-                        <option value="Categoria 3">Categoria 3</option>
-                        <option value="Categoria 3">Categoria 3</option>
-                    </select>
-                </p>
-            </div>*@
+                    <p class="custom-select">
+                        <select class="form-group">
+                            <option value="Categoria 1">Categoria 1</option>
+                            <option value="Categoria 2">Categoria 2</option>
+                            <option value="Categoria 3">Categoria 3</option>
+                            <option value="Categoria 3">Categoria 3</option>
+                        </select>
+                    </p>
+                </div>*@
 
             <div class="column">
                 <p>
                     <form name="formulario">
 
-                        <input type="radio" name="TipoDeVista" value="verListado"> ver Listado<br />
+                        <input type="radio" name="TipoDeVista" value="verListado" checked> ver Listado<br />
                         <input type="radio" name="TipoDeVista" value="verMapa"> ver Mapa<br />
                     </form>
                 </p>
@@ -133,7 +137,7 @@
                     <select form-group>
                         <option value="buscarEnBilbao">Bilbao</option>
                         @*<option value="buscarEnAraba">Araba</option>
-                        <option value="buscarEnGipuzkoa">Gipuzkoa</option>*@
+                            <option value="buscarEnGipuzkoa">Gipuzkoa</option>*@
                     </select>
                 </p>
             </div>
@@ -232,15 +236,13 @@
                 crossorigin="anonymous"
                 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
         </script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        @*<script src="~/js/site.min.js" asp-append-version="true"></script>*@
     </environment>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    @*Latest compiled and minified JavaScript
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>*@
-    <script src="~/js/site.js"></script>
-    @*@RenderSection("Scripts", required: false)*@
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzOE1r9lPnWrVImmRrp_P4LjHVfbZO7Hs" async defer></script>
 </body>
 </html>
 

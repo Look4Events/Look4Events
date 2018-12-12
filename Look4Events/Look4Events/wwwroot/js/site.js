@@ -14,7 +14,7 @@
 //}
 // • • • • • • • • • • •
 
-//~~~~~~~~~~~tabla en vista:
+//~~~~~~~~~~~tabla en vista~~~~~~~~~~~~~~:
 $(document).ready(function () {
     $('#example').DataTable({
         columnDefs: [
@@ -26,5 +26,131 @@ $(document).ready(function () {
 
     });
 });
+
+//---------- de igone-------------
+
+//Situación del mapa
+let positionActual;
+let jsonSaved;
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+        console.log()
+    } else {
+        let x = document.getElementById("location");
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function showError(error) {
+    switch (error.code) {
+        case error.PERMISSION_DENIED:
+            x.innerHTML = "User denied the request for Geolocation."
+            break;
+        case error.POSITION_UNAVAILABLE:
+            x.innerHTML = "Location information is unavailable."
+            break;
+        case error.TIMEOUT:
+            x.innerHTML = "The request to get user location timed out."
+            break;
+        case error.UNKNOWN_ERROR:
+            x.innerHTML = "An unknown error occurred."
+            break;
+    }
+}
+function showPosition(position) {
+    console.log()
+    let x = document.getElementById("location");
+    x.innerHTML = "Latitude: " + position.coords.latitude +
+        "<br>Longitude: " + position.coords.longitude;
+    //let latlon = position.coords.latitude + "," + position.coords.longitude;
+
+
+    $.ajax({
+        type: "GET",
+        //url: "https://app.ticketmaster.com/discovery/v2/events.json?apikey=h3I9tWkebYWN4j7RUCINFghyZEoQMjMi&latlong=" + latlon,
+        url: "https://app.ticketmaster.com/discovery/v2/events.json?apikey=h3I9tWkebYWN4j7RUCINFghyZEoQMjMi&city=Bilbao",
+        async: true,
+        dataType: "json",
+        success: function (json) {
+            console.log(json);
+            let e = document.getElementById("events");
+            e.innerHTML = json.page.totalElements + " events found.";
+            //showEvents(json);
+            positionActual = position;
+            jsonSaved = json;
+            initMap(position, json);
+        },
+        error: function (xhr, status, err) {
+            console.log(err);
+        }
+    });
+
+}
+
+//function showEvents(json) {
+//    for (let i = 0; i < json.page.size; i++) {
+//        $("#events").append("<p>" + json._embedded.events[i].name + 
+//                          " ---- " 
+//                                  + json._embedded.events[i]._embedded.venues[0].name + "</p>");
+//    }
+//}
+
+function initMap(position, json) {
+    let mapDiv = document.getElementById('map');
+    let map = new google.maps.Map(mapDiv, {
+        center: { lat: position.coords.latitude, lng: position.coords.longitude },
+        zoom: 10
+
+    });
+    for (let i = 0; i < json.page.size; i++) {
+        addMarker(map, json._embedded.events[i]);
+    }
+}
+
+function addMarker(map, event) {
+    let marker = new google.maps.Marker({
+        position: new google.maps.LatLng(event._embedded.venues[0].location.latitude, event._embedded.venues[0].location.longitude),
+        //infoWindow: new google.maps.InfoWindow({ content: json._embedded.events[i].name }),
+        animation: google.maps.Animation.DROP,
+        map: map
+    });
+    marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+    let infoWindow = new google.maps.InfoWindow({
+        content: '<a>' + event.name + '</a>'
+    });
+
+    marker.addListener('click', function () {
+        infoWindow.open(map, marker);
+    });
+    console.log(marker);
+}
+
+getLocation();
+
+
+//~~~~~~~~~~~radio Button~~~~~~~~~~~~~~+:
+//$(function () {
+
+//    var valor = $ ("input[name=TipoDeVista]:checked").prop("value");
+
+//    alert(valor)
+//    // &gt;&gt; 2
+
+//})
+
+//$("input[name=TipoDeVista]:checked").change(function (prop("value");
+
+//alert(valor)) {
+//    // Do something interesting here
+//});
+
+//function showEvents(json) {
+//    for (let i = 0; i < json.page.size; i++) {
+//        $("#events").append("<p>" + json._embedded.events[i].name + 
+//                          " ---- " 
+//                                  + json._embedded.events[i]._embedded.venues[0].name + "</p>");
+//    }
+//}
 
 

@@ -361,7 +361,7 @@ background: linear-gradient(to right, #487fee, #32fa95);
 
         .social ul li .icon-facebook {
             background: #3b5998;
-            list-style-image:"~/css/imagenes/fb.png";
+            list-style-image:"imagenes/fb.png";
         }
         /* Establecemos los colores de cada red social, aprovechando su class */
         .social ul li .icon-twitter {
@@ -402,4 +402,12 @@ background: linear-gradient(to right, #487fee, #32fa95);
     padding: 10px;
     border: dotted 5px red;
     width: 180px;
+}
+
+
+#map {
+    position: relative;
+    overflow: hidden;
+    height: 200px;
+    width:100%;
 }
