@@ -112,6 +112,7 @@
                 </p>
             </div>
 
+            @*------------------.  otro filtro si llegamos a poner mas  .----------------*@
             @*<div class="column">
                     <p class="custom-select">
                         <select class="form-group">
@@ -154,54 +155,7 @@
         </ul>
     </div>
 
-    @*<div class="wrapper">
-        <section>
-            <h3>section para results</h3>
-            <p>
-                <section class="columns">
 
-                    <div class="column">
-                        <h2>Resultados obtenidos:</h2>
-
-                        <div class="column">
-                            <h2>#titulo de resultado 1</h2>
-                            <section class="columns">
-                                <div class="column">lugar</div>
-                                <div class="column">fecha</div>
-                                <div class="column">categoria</div>
-                                <div class="column">description</div>
-                                <div class="column">url</div>
-                                <div class="column">imagen</div>
-                            </section>
-
-                        </div>
-                        <div class="panel panel-info">
-                            <h2>#titulo de resultado 2</h2>
-                            <section class="columns">
-                                <div class="column">lugar</div>
-                                <div class="column">fecha</div>
-                                <div class="column">categoria</div>
-                                <div class="column">description</div>
-                                <div class="column">url</div>
-                                <div class="column">imagen</div>
-                            </section>
-
-                        </div>
-                        <div class="column">
-                            <h2>#titulo de resultado 3</h2>
-                            <section class="columns">
-                                <div class="column">lugar</div>
-                                <div class="column">fecha</div>
-                                <div class="column">categoria</div>
-                                <div class="column">description</div>
-                                <div class="column">url</div>
-                                <div class="column">imagen</div>
-                            </section>
-                        </div>
-                </section>
-            </p>
-        </section>
-        </div>*@
 
     @*+++++++++++++++++++++++++++++++++++++++++++++++++++++*@
 
@@ -213,8 +167,7 @@
             <p>&copy; @DateTime.Now.Year - Look4Events</p>
         </footer>
     </div>
-    @*<partial name="_CookieConsentPartial" />*@
-    @*@RenderSection("MySection")*@
+    <partial name="_CookieConsentPartial" />
 
 
 

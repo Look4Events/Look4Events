@@ -7,46 +7,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*<h2>Prueba</h2>
-    @section MySection{
-        <h1>
-            Hello section
-        </h1>
-    }*@
-
-<!--Google map-->
-@*<div id="map-container-google-2" class="z-depth-1-half map-container" style="height: 500px">
-        <iframe src="https://maps.google.com/maps?q=chicago&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"
-                style="border:0" allowfullscreen></iframe>
-    </div>*@
-
-<!--Google Maps-->
-@*<div>
-        <h4>Event</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Name)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Name)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Type)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Type)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Url)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Url)
-            </dd>
-        </dl>
-    </div>*@
-
-
 @*ääääääääää_______template de tabla responsive______äääääääääääääääää*@
 <div class="wrapper">
 
@@ -146,68 +106,13 @@
 
                 @*----------------------------------------------------*@
 
-                @*<div class="column">
-            <h2>#titulo de resultado 3</h2>
-            <section class="columns">
-                <div class="column">lugar</div>
-                <div class="column">fecha</div>
-                <div class="column">categoria</div>
-                <div class="column">description</div>
-                <div class="column">url</div>
-                <div class="column">imagen</div>
-            </section>
-        </div>*@
             </section>
         </p>
     </section>
 
 </div>
 
-@*++++++++++++++++ tabla de listado con filtro (puesta en vista Events(index) +++++++++++++++++++++++++++++++++++++*@
-@*<table id="example" class="display" style="width:100%">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Type)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Url)
-                </th>
 
-                <th>
-
-                </th>
-            </tr>
-        </thead>
-
-
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Type)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Url)
-                    </td>
-
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    </td>
-                </tr>
-            }
-
-        </tbody>
-    </table>*@
 
 
 <div>

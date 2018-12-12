@@ -13,54 +13,7 @@
 
 
 
-@*<table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Type)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Url)
-                </th>
-                <th>
-                    Latitud
-                </th>
-                <th>
-                    Longitud
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-    @foreach (var item in Model) {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Type)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Url)
-                </td>
-                <td>
-                    @* CUIDADO estamos cogiendo latitud y longitud solo del primer venue del event, habria que hacer un foreach o algo *@
-@*@Html.DisplayFor(modelItem => item.Venues.First().Location.Latitude)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Venues.First().Location.Longitude)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
-    }
-        </tbody>
-    </table>*@
+
 
 
 <table id="example" class="display" style="width:100%">
@@ -76,18 +29,33 @@
                 @Html.DisplayNameFor(model => model.Url)
             </th>
             <th>
+                lugar
+            </th>
+            <th>
+                Imagenes
+            </th>
+            <th>
                 Details
             </th>
             <th class="hidden">
 
             </th>
+            <th>
+
+            </th>
+            <th>
+
+            </th>
+            <th>
+
+            </th>
             @*<td>
-                @* CUIDADO estamos cogiendo latitud y longitud solo del primer venue del event, habria que hacer un foreach o algo *@
+        @* CUIDADO estamos cogiendo latitud y longitud solo del primer venue del event, habria que hacer un foreach o algo *@
             @*@Html.DisplayFor(modelItem => item.Venues.First().Location.Latitude)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Venues.First().Location.Longitude)
-                </td>*@
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Venues.First().Location.Longitude)
+        </td>*@
 
         </tr>
     </thead>
@@ -96,32 +64,38 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <th>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </th>
-                <th>
-                    @Html.DisplayFor(modelItem => item.Type)
-                </th>
-                <th>
-                    <a href=" @Html.DisplayFor(modelItem => item.Url)" target="_blank">link to buy</a>
-                </th>
-                <th>
-                    <button id="volver" onclick="location.href='/Home/Prueba'">VistaPrueba</button>
-                </th>
-                <th class="hidden">
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </th>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Venues[0].Location.Latitude)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Venues[0].Location.Longitude)
-                </td>
+        <tr>
+            <th>
+                @Html.DisplayFor(modelItem => item.Name)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => item.Type)
+            </th>
+            <th>
+                <a href=" @Html.DisplayFor(modelItem => item.Url)" target="_blank">link to buy</a>
+            </th>
+            <TD>
+                Lugar del evento
+            </TD>
+            <TD>
+                <img src="@Html.DisplayFor(modelItem => item.Url)" class="img-responsive" alt="Imagen responsive">
+            </TD>
+            <th>
+                <button id="volver" onclick="location.href='/Home/Prueba'">VistaPrueba</button>
+            </th>
+            <th class="hidden">
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.Venues[0].Location.Latitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Venues[0].Location.Longitude)
+            </td>
 
-            </tr>
+        </tr>
         }
 
     </tbody>
@@ -135,57 +109,6 @@
             }
             ];
 </script>
-@*<header>
-        <h1>Búsqueda de eventos</h1>
-    </header>
-    <div class="wrapper">
-        <section>
-            <h3>section para results</h3>
-            <p>
-                <section class="columns">
-
-                    <div class="column">
-                        <h2>Resultados obtenidos:</h2>
-
-                        <div class="column">
-                            <h2>#titulo de resultado 1</h2>
-                            <section class="columns">
-                                <div class="column">lugar</div>
-                                <div class="column">fecha</div>
-                                <div class="column">categoria</div>
-                                <div class="column">description</div>
-                                <div class="column">url</div>
-                                <div class="column">imagen</div>
-                            </section>
-
-                        </div>
-                        <div class="panel panel-info">
-                            <h2>#titulo de resultado 2</h2>
-                            <section class="columns">
-                                <div class="column">lugar</div>
-                                <div class="column">fecha</div>
-                                <div class="column">categoria</div>
-                                <div class="column">description</div>
-                                <div class="column">url</div>
-                                <div class="column">imagen</div>
-                            </section>
-
-                        </div>
-                        <div class="column">
-                            <h2>#titulo de resultado 3</h2>
-                            <section class="columns">
-                                <div class="column">lugar</div>
-                                <div class="column">fecha</div>
-                                <div class="column">categoria</div>
-                                <div class="column">description</div>
-                                <div class="column">url</div>
-                                <div class="column">imagen</div>
-                            </section>
-                        </div>
-                </section>
-            </p>
-        </section>
-    </div>*@
 
 <div>
     <a asp-action="Index">Back to Index</a>
