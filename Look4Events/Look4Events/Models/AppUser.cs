@@ -18,7 +18,7 @@ namespace Look4Events.Models
         [Required]
         public string Email { get; set; }
         public string Name { get; set; }
-        public string City { get; set; }
+        public string LugarDeOrigen { get; set; }
         public DateTime FechaRegistro { get; set; }
         public DateTime FechaNacimiento { get; set; }
 

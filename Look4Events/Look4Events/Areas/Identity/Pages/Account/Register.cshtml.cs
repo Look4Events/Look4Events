@@ -69,14 +69,18 @@ namespace Look4Events.Areas.Identity.Pages.Account
             [Required]
             [DataType(DataType.Text)]
             [Display(Name = "City")]
-            public string City { get; set; }
+            public string LugarDeOrigen { get; set; }
 
             [Required]
             [DataType(DataType.Text)]
             [Display(Name = "FechaNacimiento")]
             public DateTime FechaNacimiento { get; set; }
 
-
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Fecha de Registro")]
+            public DateTime FechaRegistro = DateTime.Today;
+            
         }
 
         public void OnGet(string returnUrl = null)
@@ -89,7 +93,7 @@ namespace Look4Events.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var user = new AppUser { UserName = Input.Email, Email = Input.Email, Rol = Input.Rol, Name = Input.Name, City = Input.City, FechaNacimiento = Input.FechaNacimiento };
+                var user = new AppUser { UserName = Input.Email, Email = Input.Email, Rol = Input.Rol, Name = Input.Name, LugarDeOrigen = Input.LugarDeOrigen, FechaNacimiento = Input.FechaNacimiento };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
