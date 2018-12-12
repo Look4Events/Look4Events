@@ -72,9 +72,13 @@
             <th>
                 @Html.DisplayNameFor(model => model.Url)
             </th>
+            <th>
+                Details
+            </th>
             <th class="hidden">
 
             </th>
+
         </tr>
     </thead>
 
@@ -92,7 +96,9 @@
                 <th>
                     <a href=" @Html.DisplayFor(modelItem => item.Url)" target="_blank">link to buy</a>
                 </th>
-
+                <th>                
+                    <button id="volver" onclick="location.href='/Home/Prueba'">VistaPrueba</button>  
+                </th>
                 <th class="hidden">
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
