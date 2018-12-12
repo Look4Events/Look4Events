@@ -14,7 +14,7 @@ function verHora() {
 }
 // • • • • • • • • • • •
 
-//~~~~~~~~~~~tabla en vista CONTACT:
+//~~~~~~~~~~~tabla en vista:
 $(document).ready(function () {
     $('#example').DataTable({
         columnDefs: [
@@ -26,3 +26,5 @@ $(document).ready(function () {
 
     });
 });
+
+

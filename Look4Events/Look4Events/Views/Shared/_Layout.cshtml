@@ -114,12 +114,13 @@
 
             <div class="column">
                 <p>
-                    <select form-group>
-                        <option value="Listado">Listado / Detalles</option>
-                        <option value="Mapa">Mapa</option>
-                    </select>
+                    <form name="formulario">
+                        <!-- Botones de opción -->
+                        Tipo de vista: <input type="radio" name="TipoDeVista" value="verListado"> ver Listado
+                        <input type="radio" name="TipoDeVista" value="verMapa"> ver Mapa
+                    </form>
                 </p>
-            </div>
+</div>
             <div class="column">
                 <p>
                     <select form-group>
