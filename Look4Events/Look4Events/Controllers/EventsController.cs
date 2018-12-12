@@ -29,11 +29,11 @@ namespace Look4Events.Controllers
             bool next = true;
             
             HttpClient client = new HttpClient();
-            int i = 1;
+            
             List<Event> eventos = new List<Event>();
             while (next)
             {
-                HttpResponseMessage response = await client.GetAsync("https://app.ticketmaster.com/discovery/v2/events.json?apikey=h3I9tWkebYWN4j7RUCINFghyZEoQMjMi");
+                HttpResponseMessage response = await client.GetAsync("https://app.ticketmaster.com/discovery/v2/events.json?apikey=h3I9tWkebYWN4j7RUCINFghyZEoQMjMi&city=Bilbao");
                 if (response.IsSuccessStatusCode)
                 {
                     string output = await response.Content.ReadAsStringAsync();
@@ -53,6 +53,15 @@ namespace Look4Events.Controllers
                             JToken locationJson = venue["location"];
                             Location location = locationJson.ToObject<Location>();
 
+                            //JToken ImagesJson = venue["images"];
+                            //Images images = ImagesJson.ToObject<Images>();
+
+                            //JToken cityJson = venue["city"];
+                            //City city = cityJson.ToObject<City>();
+
+                            //JToken nameJson = venue["name"];
+                            //JToken postalCodeJson = venue["postalCode"];
+
 
                             eventVenues.Add(eventVenue);
                         }
@@ -65,22 +74,7 @@ namespace Look4Events.Controllers
                     
                 }
                 next = false;
-                //foreach (var item in items.Results)
-                //{
-
-                //    Event p = new Event
-                //    {
-                //        Name = item.Name,
-                //        Type = item.Type,
-                //        Id = item.Id,
-                //        Url = item.Url
-
-                //    };
-
-
-                //    eventos.Add(p);
-                //}
-                //i++;
+                
             }
             return View(eventos);
         }

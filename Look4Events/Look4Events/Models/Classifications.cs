@@ -8,6 +8,6 @@ namespace Look4Events.Models.Events
     public class Classifications
     {
         public string Id { get; set; }
-        public Segment Segment { get; set; }
+        public string Name { get; set; }
     }
 }

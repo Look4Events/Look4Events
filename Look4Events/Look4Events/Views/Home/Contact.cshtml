@@ -4,14 +4,22 @@
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
 
+
+<p id="location">AQUÍ MAPA </p>
+<div id="map"></div>
+<div id="eventsSmall"></div>
+<div id="events"></div>
+
+
 <address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
+  
 </address>
 
 <address>
     <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
     <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
 </address>
+
+<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"></script>
+<script src="~/js/site.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzOE1r9lPnWrVImmRrp_P4LjHVfbZO7Hs" async defer></script>
