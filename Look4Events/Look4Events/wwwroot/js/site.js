@@ -77,19 +77,14 @@ function showPosition(position) {
             //console.log(json._embedded.events);
             listadoResultados = json._embedded.events;
             console.log(listadoResultados);
-            for (let i = 0; i < listadoResultados.length; i++) {
-                //let texto = document.createTextNode(listadoResultados[i].name);
-                //let parrafo = document.createElement("li");
-                //parrafo.setAttribute("class", "carta col-sm-3 list-group-item");
-                //parrafo.appendChild(texto);
-                //document.getElementById("filaResults").appendChild(parrafo);
+            for (let i = 0; i < listadoResultados.length; i++) { //prueba para ver que llega la informacion
                 console.log(listadoResultados[i].name);
-                console.log(listadoResultados[i].type);
-                console.log(listadoResultados[i].dates.start.localDate);
+            //    console.log(listadoResultados[i].dates.start.localDate);
+                //document.getElementById("filaResults").appendChild(parrafo);
             }
 
-            //let e = document.getElementById("events");
-            //e.innerHTML = json.page.totalElements + " events found.";
+            let e = document.getElementById("events");
+            e.innerHTML = json.page.totalElements + " events found.";
             showEvents(listadoResultados);
             positionActual = position;
             jsonSaved = listadoResultados;
@@ -102,78 +97,87 @@ function showPosition(position) {
 
 }
 
+
 function showEvents(json) {
     for (let i = 0; i < json.length; i++) {
-        let texto = document.createTextNode(json[i].name);
-        let parrafo = document.createElement("li");
-        parrafo.setAttribute("class", "carta col-sm-3 list-group-item");
-        parrafo.appendChild(texto);
-        let filaResults = document.getElementById("filaResults");
-        filaResults.appendChild(parrafo);
-    }
-}
 
-
-//    for (let i = 0; i < json.page.size; i++) {
-//        $("#events").append("<table id='example' class='display' style='width:100%'>" + "<tr>" +
-//            "<td>" + json._embedded.events[i].name + "</td >" +
-//            " ---- " +
-//            "<td>" + json._embedded.events[i]._embedded.venues[0].name + "</td >" +
-//            "----" +
-//            "<td>" + json._embedded.events[i].dates.start.localDate + "</td >" +
-//            " ---- " +
-//            "<td>" + json._embedded.events[i].dates.start.localTime + "</td >" +
-//            " ---- " +
-//            "<td>" + json._embedded.events[i].classifications[0].segment.name + "</td >" +
-//            " ---- " +
-//            "<td>" + json._embedded.events[i]._embedded.venues[0].type + "</td >" +
-//            " ---- " +
-//            "<td>" + json._embedded.events[i].url + "</td >" +
-//            " ---- " +
-//            "<td>" + json._embedded.events[i]._embedded.venues[0].postalCode + "</td >" +
-//            " ---- " +
-//            "<td>" + json._embedded.events[i]._embedded.venues[0].city.name + "</td >" +
-//            " ---- " +
-//            "<td>" + json._embedded.events[i]._embedded.venues[0].state.name + "</td >" +
-//            " ---- " +
-//            "<td>" + json._embedded.events[i]._embedded.venues[0].country.name + "</td >" +
-//            " ---- " +
-//            "<td>" + json._embedded.events[i]._embedded.venues[0].address.line1 + "</td >" +
-//            " ---- " +
-//            "<td>" + json._embedded.events[i]._embedded.venues[0].location.longitude + "</td >" +
-//            " ---- " +
-//            "<td>" + json._embedded.events[i]._embedded.venues[0].location.latitude + "</td >" +
-//            "</tr>" +
-//            " </table> ");
-//        resultadoBusqueda.push({ name: json._embedded.events[i]._embedded.venues[0].name, fecha: json._embedded.events[i].dates.start.localDate, hora: json._embedded.events[i].dates.start.localTime, lugar: json._embedded.events[i]._embedded.venues[0].city.name });
-//    }
-//    mostrarDatosOrdenados(resultadoBusqueda);
-//}
-
-
-
-function mostrarDatosOrdenados(listaParaMostrar) {
-    for (var i = 0; i < listaParaMostrar.length; i++) {
         // creo elemento titulo
         let elementoTitulo = document.createElement("h3");
-        let textoTitulo = document.createTextNode(listaParaMostrar[i].name);
+        elementoTitulo.setAttribute("class","rowspan=3");
+        let textoTitulo = document.createTextNode(json[i].name);
         elementoTitulo.appendChild(textoTitulo);
 
         // creo elemento parrafo
-        let elementoParrafo = document.createElement("p");
-        let textoParrafo = document.createTextNode(listaParaMostrar[i].fecha + " /  Hora: " + listaParaMostrar[i].hora);
+        let elementoParrafo = document.createElement("li");
+        let textoParrafo = document.createTextNode(json[i].dates.start.localDate + " /  Hora: " + json[i].dates.start.localTime + " / Ciudad: " + json[i]._embedded.venues[0].city.name);
         elementoParrafo.appendChild(textoParrafo);
 
         // creo un div, les incluyo el titulo y el parrafo
-        let div = document.createElement("div");
-        div.setAttribute("class", "col-xs-4");
-        div.appendChild(elementoTitulo);
-        div.appendChild(elementoParrafo);
+        let celdaEvento = document.createElement("button");
+        celdaEvento.setAttribute("class", "col-xs-8 col-sm-6 col-md-4 personal");
+        //<button id="volver" onclick="location.href='page2.html'">page2</button>
+        celdaEvento.setAttribute("onclick", "location.href='/Home/Prueba'");
+        celdaEvento.appendChild(elementoTitulo);
+        celdaEvento.appendChild(elementoParrafo);
+        
+        
+        //let texto = document.createTextNode(json[i].name);
+        let parrafo = document.createElement("div");
+        //parrafo.setAttribute("class", "col-xs-4");
+        parrafo.appendChild(celdaEvento);
+        //let filaResults = document.getElementById("filaResults");
 
-        document.getElementById("datos").appendChild(div);
+        //filaResults.appendChild(parrafo);
+        //document.getElementById("filaResults").appendChild(parrafo);
+        if (i % 3 === 0) {
+            let elementoFila = document.createElement("div");
+            elementoFila.setAttribute("class", "row col-xs-8 col-sm-6 col-md-4");
+            elementoFila.appendChild(celdaEvento);
+            
+        }
+        document.getElementById("filaResults").appendChild(celdaEvento);
     }
 }
 
+//var url = $("#RedirectTo").val();
+//location.href = www.google.com; 
+    //--------------- el que funciona:  ------------
+//function showEvents(json) {
+//    for (let i = 0; i < json.length; i++) {
+//        let texto = document.createTextNode(json[i].name);
+//        let parrafo = document.createElement("li");
+//        parrafo.setAttribute("class", "col-xs-4");
+//        parrafo.appendChild(texto);
+//        let filaResults = document.getElementById("filaResults");
+//        filaResults.appendChild(parrafo);
+//    }
+//}
+
+//--------------tambien funciona--------------------------
+//function showEvents(json) {
+//    for (let i = 0; i < json.length; i++) {
+//        // creo elemento titulo
+//        let elementoTitulo = document.createElement("h3");
+//        let textoTitulo = document.createTextNode(json[i].name);
+//        elementoTitulo.appendChild(textoTitulo);
+//        // creo elemento parrafo
+//        let elementoParrafo = document.createElement("p");
+//        let textoParrafo = document.createTextNode(json[i].dates.start.localDate + " /  Hora: " + json[i].dates.start.localTime + " / Ciudad: " +json[i]._embedded.venues[0].city.name);
+//        elementoParrafo.appendChild(textoParrafo);
+
+//        // creo un div, les incluyo el titulo y el parrafo
+//        let div = document.createElement("div");
+//        div.setAttribute("class", "col-xs-4");
+//        div.appendChild(elementoTitulo);
+//        div.appendChild(elementoParrafo);
+
+//        filaResults.appendChild(div);
+
+//    }
+//}
+
+
+//------original -----------
 //function showEvents(json) {
 //    for (let i = 0; i < json.page.size; i++) {
 //        $("#events").append("<table id='example' class='display' style='width:100%'>" +"<tr>"+
@@ -241,19 +245,3 @@ function addMarker(map, event) {
 }
 
 getLocation();
-
-////~~~~~~~~~~~ Radio Button ~~~~~~~~~~~~~~+:
-////$(function () {
-
-////    var valor = $ ("input[name=TipoDeVista]:checked").prop("value");
-
-////    alert(valor)
-////    // &gt;&gt; 2
-
-////})
-
-////$("input[name=TipoDeVista]:checked").change(function (prop("value");
-
-////alert(valor)) {
-////    // Do something interesting here
-////});

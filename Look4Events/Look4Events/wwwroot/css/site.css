@@ -289,11 +289,64 @@ footer {
 }
 
 /*-----------------------------------------------------*/
-button {
-    font-family: Forte;
-    font-size: larger;
-    border-radius: 15px;
+/* Small devices (tablets, 768px and up) */
+@media screen and (max-width: 680px) {
+    button {
+        font-family: Forte;
+        font-size: large;
+        border-radius: 9px;
+        border: none;
+        outline: none;
+        width: 193px;
+        height: 100%;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 700;
+        color: #FFFFFF;
+        text-transform: uppercase;
+        background: linear-gradient(to right, #487fee, #32fa95);
+    }
 }
+
+/* Medium devices (desktops, 992px and up) */
+@media screen and (max-width: 980px) {
+    button {
+        font-family: Symbol;
+        font-size: large;
+        border-radius: 9px;
+        border: none;
+        outline: none;
+        width: 193px;
+        height: 100%;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 700;
+        color: #FFFFFF;
+        text-transform: uppercase;
+        background: linear-gradient(to right, #487fee, #32fa95);
+    }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @screen-lg-min) {
+    button {
+        font-family: Garamond;
+        font-size: large;
+        border-radius: 9px;
+        border: none;
+        outline: none;
+        width: 193px;
+        height: 100%;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 700;
+        color: #FFFFFF;
+        text-transform: uppercase;
+        background: linear-gradient(to right, #487fee, #32fa95);
+    }
+}
+
+
 
 select {
 }
@@ -322,19 +375,7 @@ select {
 
 
 /*-----------------------------------------------*/
-button{
-width: 193px;
-height: 100%;
-border-radius: 35px;
-border: none;
-outline: none;
-cursor: pointer;
-font-size: 14px;
-font-weight: 700;
-color: #FFFFFF;
-text-transform: uppercase;
-background: linear-gradient(to right, #487fee, #32fa95);
-}
+
 
 /*------------------------------------------------*/
 .social {

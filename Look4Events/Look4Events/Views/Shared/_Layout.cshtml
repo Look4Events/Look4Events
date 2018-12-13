@@ -111,18 +111,24 @@
                     </form>
                 </p>
             </div>
-
+            <div class="column">
+                <p class="custom-select">
+                    <input type="date" id="calendario" />
+                </p>
+            </div>
             @*------------------.  otro filtro si llegamos a poner mas  .----------------*@
             @*<div class="column">
-                    <p class="custom-select">
-                        <select class="form-group">
-                            <option value="Categoria 1">Categoria 1</option>
-                            <option value="Categoria 2">Categoria 2</option>
-                            <option value="Categoria 3">Categoria 3</option>
-                            <option value="Categoria 3">Categoria 3</option>
-                        </select>
-                    </p>
-                </div>*@
+            <p class="custom-select">
+                <select class="form-group">
+                    <option value="Categoria 1">Categoria 1</option>
+                    <option value="Categoria 2">Categoria 2</option>
+                    <option value="Categoria 3">Categoria 3</option>
+                    <option value="Categoria 3">Categoria 3</option>
+                </select>
+            </p>
+        </div> *@
+
+
 
             <div class="column">
                 <p>
@@ -137,7 +143,7 @@
                     <select form-group>
                         <option value="buscarEnBilbao">Bilbao</option>
                         @*<option value="buscarEnAraba">Araba</option>
-                            <option value="buscarEnGipuzkoa">Gipuzkoa</option>*@
+                    <option value="buscarEnGipuzkoa">Gipuzkoa</option>*@
                     </select>
                 </p>
             </div>
@@ -162,10 +168,10 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
+    </div>
         <footer>
             <p>&copy; @DateTime.Now.Year - Look4Events</p>
         </footer>
-    </div>
     <partial name="_CookieConsentPartial" />
 
 
