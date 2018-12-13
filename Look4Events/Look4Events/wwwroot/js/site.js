@@ -15,24 +15,24 @@
 // • • • • • • • • • • •
 
 //~~~~~~~~~~~tabla en vista~~~~~~~~~~~~~~:
-$(document).ready(function () {
-    $('#example').DataTable({
-        columnDefs: [
-            {
-                targets: [0, 1, 2],
-                className: 'mdl-data-table__cell--non-numeric'
-            }
-        ]
+//$(document).ready(function () {
+//    $('#example').DataTable({
+//        columnDefs: [
+//            {
+//                targets: [0, 1, 2],
+//                className: 'mdl-data-table__cell--non-numeric'
+//            }
+//        ]
 
-    });
-});
-
+//    });
+//});
 
 //---------- de igone + david -------------
 
 //Situación del mapa
 let positionActual;
 let jsonSaved;
+let listadoResultados;
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition, showError);
@@ -66,7 +66,6 @@ function showPosition(position) {
         "<br>Longitude: " + position.coords.longitude;
     //let latlon = position.coords.latitude + "," + position.coords.longitude;
 
-
     $.ajax({
         type: "GET",
         //url: "https://app.ticketmaster.com/discovery/v2/events.json?apikey=h3I9tWkebYWN4j7RUCINFghyZEoQMjMi&latlong=" + latlon,
@@ -75,23 +74,95 @@ function showPosition(position) {
         dataType: "json",
         success: function (json) {
             console.log(json);
-            let e = document.getElementById("events");
-            e.innerHTML = json.page.totalElements + " events found.";
-            showEvents(json);
+            //console.log(json._embedded.events);
+            listadoResultados = json._embedded.events;
+            console.log(listadoResultados);
+            for (let i = 0; i < listadoResultados.length; i++) {
+                //let texto = document.createTextNode(listadoResultados[i].name);
+                //let parrafo = document.createElement("li");
+                //parrafo.setAttribute("class", "carta col-sm-3 list-group-item");
+                //parrafo.appendChild(texto);
+                //document.getElementById("filaResults").appendChild(parrafo);
+                console.log(listadoResultados[i].name);
+                console.log(listadoResultados[i].type);
+                console.log(listadoResultados[i].dates.start.localDate);
+            }
+
+            //let e = document.getElementById("events");
+            //e.innerHTML = json.page.totalElements + " events found.";
+            showEvents(listadoResultados);
             positionActual = position;
-            jsonSaved = json;
-            initMap(position, json);
+            jsonSaved = listadoResultados;
+            initMap(position, listadoResultados);
         },
         error: function (xhr, status, err) {
             console.log(err);
         }
     });
 
-    function openInNewTab(url) {
-        var win = window.open(url, '_blank');
-        win.focus();
+}
+
+function showEvents(json) {
+    for (let i = 0; i < json.length; i++) {
+        let texto = document.createTextNode(json[i].name);
+        let parrafo = document.createElement("li");
+        parrafo.setAttribute("class", "carta col-sm-3 list-group-item");
+        parrafo.appendChild(texto);
+        let filaResults = document.getElementById("filaResults");
+        filaResults.appendChild(parrafo);
     }
 }
+
+
+//    for (let i = 0; i < json.page.size; i++) {
+//        $("#events").append("<table id='example' class='display' style='width:100%'>" + "<tr>" +
+//            "<td>" + json._embedded.events[i].name + "</td >" +
+//            " ---- " +
+//            "<td>" + json._embedded.events[i]._embedded.venues[0].name + "</td >" +
+//            "----" +
+//            "<td>" + json._embedded.events[i].dates.start.localDate + "</td >" +
+//            " ---- " +
+//            "<td>" + json._embedded.events[i].dates.start.localTime + "</td >" +
+//            " ---- " +
+//            "<td>" + json._embedded.events[i].classifications[0].segment.name + "</td >" +
+//            " ---- " +
+//            "<td>" + json._embedded.events[i]._embedded.venues[0].type + "</td >" +
+//            " ---- " +
+//            "<td>" + json._embedded.events[i].url + "</td >" +
+//            " ---- " +
+//            "<td>" + json._embedded.events[i]._embedded.venues[0].postalCode + "</td >" +
+//            " ---- " +
+//            "<td>" + json._embedded.events[i]._embedded.venues[0].city.name + "</td >" +
+//            " ---- " +
+//            "<td>" + json._embedded.events[i]._embedded.venues[0].state.name + "</td >" +
+//            " ---- " +
+//            "<td>" + json._embedded.events[i]._embedded.venues[0].country.name + "</td >" +
+//            " ---- " +
+//            "<td>" + json._embedded.events[i]._embedded.venues[0].address.line1 + "</td >" +
+//            " ---- " +
+//            "<td>" + json._embedded.events[i]._embedded.venues[0].location.longitude + "</td >" +
+//            " ---- " +
+//            "<td>" + json._embedded.events[i]._embedded.venues[0].location.latitude + "</td >" +
+//            "</tr>" +
+//            " </table> ");
+//        resultadoBusqueda.push({ name: json._embedded.events[i]._embedded.venues[0].name, fecha: json._embedded.events[i].dates.start.localDate, hora: json._embedded.events[i].dates.start.localTime, lugar: json._embedded.events[i]._embedded.venues[0].city.name });
+//    }
+//    mostrarDatosOrdenados(resultadoBusqueda);
+//}
+
+
+
+function mostrarDatosOrdenados(listaParaMostrar) {
+    for (var i = 0; i < listaParaMostrar.length; i++) {
+        // creo elemento titulo
+        let elementoTitulo = document.createElement("h3");
+        let textoTitulo = document.createTextNode(listaParaMostrar[i].name);
+        elementoTitulo.appendChild(textoTitulo);
+
+        // creo elemento parrafo
+        let elementoParrafo = document.createElement("p");
+        let textoParrafo = document.createTextNode(listaParaMostrar[i].fecha + " /  Hora: " + listaParaMostrar[i].hora);
+        elementoParrafo.appendChild(textoParrafo);
 
         // creo un div, les incluyo el titulo y el parrafo
         let div = document.createElement("div");
@@ -99,44 +170,45 @@ function showPosition(position) {
         div.appendChild(elementoTitulo);
         div.appendChild(elementoParrafo);
 
-document.getElementById("datosResults").appendChild(div);
-
-
-function showEvents(json) {
-    for (let i = 0; i < json.page.size; i++) {
-        $("#events").append("<table id='example' class='display' style='width:100%'>" +"<tr>"+
-            "<td>" + json._embedded.events[i].name + "</td >" +
-            " ---- "+
-            "<td>" + json._embedded.events[i]._embedded.venues[0].name + "</td >" +
-            "----"+
-            "<td>" + json._embedded.events[i].dates.start.localDate + "</td >" +
-            " ---- "+
-            "<td>" + json._embedded.events[i].dates.start.localTime + "</td >" +
-            " ---- "+
-            "<td>" + json._embedded.events[i].classifications[0].segment.name + "</td >" +
-            " ---- "+
-            "<td>" + json._embedded.events[i]._embedded.venues[0].type + "</td >" +
-            " ---- " +
-            "<td>" + json._embedded.events[i].url + "</td >" +
-            " ---- "+
-            "<td>" + json._embedded.events[i]._embedded.venues[0].postalCode + "</td >" +
-            " ---- "+
-            "<td>" + json._embedded.events[i]._embedded.venues[0].city.name + "</td >" +
-            " ---- "+
-            "<td>" + json._embedded.events[i]._embedded.venues[0].state.name + "</td >" +
-            " ---- "+
-            "<td>" + json._embedded.events[i]._embedded.venues[0].country.name + "</td >" +
-            " ---- "+
-            "<td>" + json._embedded.events[i]._embedded.venues[0].address.line1 + "</td >" +
-            " ---- "+
-            "<td>" + json._embedded.events[i]._embedded.venues[0].location.longitude + "</td >" +
-            " ---- "+
-            "<td>" + json._embedded.events[i]._embedded.venues[0].location.latitude + "</td >" +
-            "</tr>" +
-            " </table> "
-            );
+        document.getElementById("datos").appendChild(div);
     }
 }
+
+//function showEvents(json) {
+//    for (let i = 0; i < json.page.size; i++) {
+//        $("#events").append("<table id='example' class='display' style='width:100%'>" +"<tr>"+
+//            "<td>" + json._embedded.events[i].name + "</td >" +
+//            " ---- "+
+//            "<td>" + json._embedded.events[i]._embedded.venues[0].name + "</td >" +
+//            "----"+
+//            "<td>" + json._embedded.events[i].dates.start.localDate + "</td >" +
+//            " ---- "+
+//            "<td>" + json._embedded.events[i].dates.start.localTime + "</td >" +
+//            " ---- "+
+//            "<td>" + json._embedded.events[i].classifications[0].segment.name + "</td >" +
+//            " ---- "+
+//            "<td>" + json._embedded.events[i]._embedded.venues[0].type + "</td >" +
+//            " ---- " +
+//            "<td>" + json._embedded.events[i].url + "</td >" +
+//            " ---- "+
+//            "<td>" + json._embedded.events[i]._embedded.venues[0].postalCode + "</td >" +
+//            " ---- "+
+//            "<td>" + json._embedded.events[i]._embedded.venues[0].city.name + "</td >" +
+//            " ---- "+
+//            "<td>" + json._embedded.events[i]._embedded.venues[0].state.name + "</td >" +
+//            " ---- "+
+//            "<td>" + json._embedded.events[i]._embedded.venues[0].country.name + "</td >" +
+//            " ---- "+
+//            "<td>" + json._embedded.events[i]._embedded.venues[0].address.line1 + "</td >" +
+//            " ---- "+
+//            "<td>" + json._embedded.events[i]._embedded.venues[0].location.longitude + "</td >" +
+//            " ---- "+
+//            "<td>" + json._embedded.events[i]._embedded.venues[0].location.latitude + "</td >" +
+//            "</tr>" +
+//            " </table> "
+//            );
+//    }
+//}
 
 function initMap(position, json) {
     let mapDiv = document.getElementById('map');
@@ -170,34 +242,18 @@ function addMarker(map, event) {
 
 getLocation();
 
-//~~~~~~~~~~~ Radio Button ~~~~~~~~~~~~~~+:
-//$(function () {
+////~~~~~~~~~~~ Radio Button ~~~~~~~~~~~~~~+:
+////$(function () {
 
-//    var valor = $ ("input[name=TipoDeVista]:checked").prop("value");
+////    var valor = $ ("input[name=TipoDeVista]:checked").prop("value");
 
-//    alert(valor)
-//    // &gt;&gt; 2
+////    alert(valor)
+////    // &gt;&gt; 2
 
-//})
+////})
 
-//$("input[name=TipoDeVista]:checked").change(function (prop("value");
+////$("input[name=TipoDeVista]:checked").change(function (prop("value");
 
-//alert(valor)) {
-//    // Do something interesting here
-//});
-
-//function showEvents(json) {
-//    for (let i = 0; i < json.page.size; i++) {
-//        $("#events").append("<p>" + json._embedded.events[i].name + 
-//                          " ---- " 
-//                                  + json._embedded.events[i]._embedded.venues[0].name + "</p>");
-//    }
-//}
-
-
-//------------ para prueba -----------------------------
-//function showEvents(json) {
-//    for (let i = 0; i < json.page.size; i++) {
-//        $("#events").append("<table id='example' class='display' style='width:100%'>" + "<tr>" +
-//            "<td>" + json._embedded.events[i].name + "</td >" +
-//            " ---- " +
+////alert(valor)) {
+////    // Do something interesting here
+////});

@@ -15,7 +15,6 @@
 
 
 
-
 <table id="example" class="display" style="width:100%">
     <thead>
         <tr>
@@ -50,12 +49,12 @@
 
             </th>
             @*<td>
-        @* CUIDADO estamos cogiendo latitud y longitud solo del primer venue del event, habria que hacer un foreach o algo *@
+                @* CUIDADO estamos cogiendo latitud y longitud solo del primer venue del event, habria que hacer un foreach o algo *@
             @*@Html.DisplayFor(modelItem => item.Venues.First().Location.Latitude)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Venues.First().Location.Longitude)
-        </td>*@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Venues.First().Location.Longitude)
+                </td>*@
 
         </tr>
     </thead>
@@ -64,38 +63,38 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <th>
-                @Html.DisplayFor(modelItem => item.Name)
-            </th>
-            <th>
-                @Html.DisplayFor(modelItem => item.Type)
-            </th>
-            <th>
-                <a href=" @Html.DisplayFor(modelItem => item.Url)" target="_blank">link to buy</a>
-            </th>
-            <TD>
-                Lugar del evento
-            </TD>
-            <TD>
-                <img src="@Html.DisplayFor(modelItem => item.Url)" class="img-responsive" alt="Imagen responsive">
-            </TD>
-            <th>
-                <button id="volver" onclick="location.href='/Home/Prueba'">VistaPrueba</button>
-            </th>
-            <th class="hidden">
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </th>
-            <td>
-                @Html.DisplayFor(modelItem => item.Venues[0].Location.Latitude)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Venues[0].Location.Longitude)
-            </td>
+            <tr>
+                <th>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </th>
+                <th>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </th>
+                <th>
+                    <a href=" @Html.DisplayFor(modelItem => item.Url)" target="_blank">link to buy</a>
+                </th>
+                <TD>
+                    Lugar del evento
+                </TD>
+                <TD>
+                    <img src="@Html.DisplayFor(modelItem => item.Url)" class="img-responsive" alt="Imagen responsive">
+                </TD>
+                <th>
+                    <button id="volver" onclick="location.href='/Home/Prueba'">VistaPrueba</button>
+                </th>
+                <th class="hidden">
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Venues[0].Location.Latitude)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Venues[0].Location.Longitude)
+                </td>
 
-        </tr>
+            </tr>
         }
 
     </tbody>
