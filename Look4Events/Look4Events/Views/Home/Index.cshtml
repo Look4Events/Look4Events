@@ -1,47 +1,30 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
-@*<div>
-
+<link rel="stylesheet" href="~/css/site.css" />
+<div class="img-responsive" id="cabecera">
+    <div>
+        <a href=""><img class="img-responsive" src="http://bbkbootcamp.com/wp-content/uploads/2015/03/cropped-C4J_LOGO_512px_Prueba_1.png" /></a>
     </div>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Job Title</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>James</td>
-                    <td>Matman</td>
-                    <td>Chief Sandwich Eater</td>
-                </tr>
-                <tr>
-                    <td>The</td>
-                    <td>Tick</td>
-                    <td>Crimefighter Sorta</td>
-                </tr>
-            </tbody>
-        </table>*@
-
-
-
-
-
-
+    <div id="title">
+        @*<h1 class="title">Home</h1>*@
+    </div>
+    <hr class="second" />
+</div>
+<div>
+</div>
 @*ääääääääää_______lugar donde se muestra el mapa______äääääääääääääääää*@
 <p id="location">AQUÍ MAPA</p>
 <div id="map"></div>
 <div id="events"></div>
 @*-----------------------------------------------------------------------------*@
-<div class="row">
-    <ul id="filaResults" class="list-group"></ul>
+<div class="wrapper">
+    <header>
+        <h2>Eventos:</h2>
+    </header>
+    <section id="filaResults" class="columns">
+        @*<div class="column">*@
+        @*<ul id="filaResults" class=list-group></ul>*@
+        @*</div>*@
+    </section>
 </div>
-
-<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"></script>
-<script src="~/js/site.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzOE1r9lPnWrVImmRrp_P4LjHVfbZO7Hs" async defer></script>
