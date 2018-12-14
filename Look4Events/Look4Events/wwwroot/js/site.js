@@ -36,27 +36,28 @@
 
 let fechaInicio = {};
 let fechaFin = {};
-
+let fechFin;
+let fechInicial;
 
 $('#fechaIn').on('click', function () {
-    var date = new Date($('#fechaInicio').val());
+    let date = new Date($('#fechaInicio').val());
     day = date.getDate();
     month = date.getMonth() + 1;
     year = date.getFullYear();
     fechaInicio = { year: year, month: month, day: day };
+ fechInicial = fechaInicio.year + "-" + fechaInicio.month + "-" + fechaInicio.day;
 });
 
-let fechInicial = fechaInicio.year + "-" + fechaInicio.month + "-" + fechaInicio.day;
 
 $('#fechaFin').on('click', function () {
-    var date = new Date($('#fechaFinal').val());
+    let date = new Date($('#fechaFinal').val());
     day = date.getDate();
     month = date.getMonth() + 1;
     year = date.getFullYear();
     fechaFin = { year: year, month: month, day: day };
+ fechFin = fechaFin.year + "-" + fechaFin.month + "-" + fechaFin.day;
 });
 
-let fechFin = fechaFin.year + "-" + fechaFin.month + "-" + fechaFin.day;
 
 
 
