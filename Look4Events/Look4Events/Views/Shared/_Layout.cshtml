@@ -73,7 +73,7 @@
                             <input type="search" id="miBusqueda" name="q"
                                    placeholder="Buscar por keyword..."
                                    aria-label="Buscar en el contenido del sitio">
-                            <button class="botonBuscar" onclick="initMap()">Buscar</button>
+                            <button class="botonBuscar" onclick="">Buscar</button>
                         </div>
                     </form>
                 </p>
@@ -82,9 +82,9 @@
                 <p id="fechaHoy">Today: @DateTime.Now.Day / @DateTime.Now.Month / @DateTime.Now.Year</p>
                 <p></p>
                 <p class="custom-select">
-                    FROM: <input type="date" id="fechaInicio" /><br />
+                    FROM: <input type="date" id="fechaIn" /><br />
                     <br />
-                    TO: <input type="date" id="fechaFinal" />
+                    TO: <input type="date" id="fechaFin" />
                     <button id="BuscarporFecha" onclick="searchByDateShowPosition()">Buscar</button>
                 </p>
             </div>
