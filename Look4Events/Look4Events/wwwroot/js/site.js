@@ -69,16 +69,16 @@ let fechInicial;
 let hora = "T00:00:00Z";
 let StartDateTime = "&startDateTime=";
 let EndDateTime = "&endDateTime=";
-$('#fechaIn').on('click', function () {
-    let date = new Date($('#fechaInicio').val());
+$('#fechaIn').on('change', function () {
+    let date = new Date($('#fechaIn').val());
     day = date.getDate();
     month = date.getMonth() + 1;
     year = date.getFullYear();
     fechaInicio = { year: year, month: month, day: day };
     fechInicial = fechaInicio.year + "-" + fechaInicio.month + "-" + fechaInicio.day;
 });
-$('#fechaFin').on('click', function () {
-    let date = new Date($('#fechaFinal').val());
+$('#fechaFin').on('change', function () {
+    let date = new Date($('#fechaFin').val());
     day = date.getDate();
     month = date.getMonth() + 1;
     year = date.getFullYear();
