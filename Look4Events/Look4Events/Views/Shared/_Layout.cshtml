@@ -112,10 +112,11 @@
                 </p>
             </div>
             <div class="column">
-                <p>Today: @DateTime.Now.Day / @DateTime.Now.Month / @DateTime.Now.Year</p>
+                <p id="fechaHoy">Today: @DateTime.Now.Day / @DateTime.Now.Month / @DateTime.Now.Year</p>
                 <p></p>
                 <p class="custom-select">
-                    FROM: <input type="date" id="calendario" />
+                    FROM: <input type="date" id="calendario" /><br />
+                    <br />
                     TO: <input type="date" id="calendario" />
                 </p>
             </div>
@@ -200,7 +201,7 @@
                 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
         </script>
         <script src="~/js/site.js" asp-append-version="true"></script>
-        @*<script src="~/js/site.min.js" asp-append-version="true"></script>*@
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

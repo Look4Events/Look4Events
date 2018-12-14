@@ -1,2 +1,384 @@
-﻿body {
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
+for details on configuring this project to bundle and minify static web assets. */
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-color: aquamarine;
 }
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}
+
+/*.................................................................................................................
+...... hasta aqui venia por defecto content label x-ms-webview plantilla (todo lo de arriba) ...................
+.................................................................................................................*/
+footer {
+    padding: 0 15px;
+}
+
+
+/*.................................................................................................................
+...... ----------------------_______ tabla responsive _______ ---------------------- ...................
+.................................................................................................................*/
+
+/* Generic Styling, for Desktops/Laptops */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+/* Zebra striping */
+tr:nth-of-type(odd) {
+    background: #eee;
+}
+
+th {
+    background: #333;
+    color: white;
+    font-weight: bold;
+}
+
+td, th {
+    padding: 6px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+/* 
+Max width before this PARTICULAR table gets nasty
+This query will take effect for any screen smaller than 760px
+and also iPads specifically.
+*/
+@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+
+    /* Force table to not be like tables anymore */
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+        /* Hide table headers (but not display: none;, for accessibility) */
+        thead tr {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+
+    tr {
+        border: 1px solid #ccc;
+    }
+
+    td {
+        /* Behave  like a "row" */
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+    }
+
+        td:before {
+            /* Now like a table header */
+            position: absolute;
+            /* Top/left values mimic padding */
+            top: 6px;
+            left: 6px;
+            width: 45%;
+            padding-right: 10px;
+            white-space: nowrap;
+        }
+
+/*------------------------------------------------*/
+        /*Label the data*/
+
+        /*td:nth-of-type(1):before {
+            content: "First Name";
+        }
+
+        td:nth-of-type(2):before {
+            content: "Last Name";
+        }
+
+        td:nth-of-type(3):before {
+            content: "Job Title";
+        }
+
+        td:nth-of-type(4):before {
+            content: "Favorite Color";
+        }
+
+        td:nth-of-type(5):before {
+            content: "Wars of Trek?";
+        }
+
+        td:nth-of-type(6):before {
+            content: "Secret Alias";
+        }
+
+        td:nth-of-type(7):before {
+            content: "Date of Birth";
+        }
+
+        td:nth-of-type(8):before {
+            content: "Dream Vacation City";
+        }
+
+        td:nth-of-type(9):before {
+            content: "GPA";
+        }
+
+        td:nth-of-type(10):before {
+            content: "Arbitrary Data";
+        }*/
+}
+
+/*++++++++++++ _______ titulo grande multicolor en movimiento SVG _________ ++++++++++++++++++++++++++++++*/
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+
+svg {
+    /*display: block;*/
+    font: 10.5em 'Montserrat';
+    /*width: 960px;
+    height: 300px;*/
+    margin: 0 auto;
+}
+
+.text-copy {
+    fill: none;
+    stroke: white;
+    stroke-dasharray: 6% 29%;
+    stroke-width: 5px;
+    stroke-dashoffset: 0%;
+    animation: stroke-offset 5.5s infinite linear;
+}
+
+    .text-copy:nth-child(1) {
+        stroke: #4D163D;
+        animation-delay: -5;
+    }
+
+    .text-copy:nth-child(2) {
+        stroke: #840037;
+        animation-delay: -2s;
+    }
+
+    .text-copy:nth-child(3) {
+        stroke: #BD0034;
+        animation-delay: -3s;
+    }
+
+    .text-copy:nth-child(4) {
+        stroke: #BD0034;
+        animation-delay: -4s;
+    }
+
+    .text-copy:nth-child(5) {
+        stroke: #FDB731;
+        animation-delay: -5s;
+    }
+
+@keyframes stroke-offset {
+    100% {
+        stroke-dashoffset: -35%;
+    }
+}
+
+/***************  tablas  ********************/
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+* {
+    box-sizing: border-box;
+}
+
+
+
+.wrapper {
+    padding: 5px;
+    max-width: 960px;
+    width: 100%;
+    margin: 20px auto;
+}
+
+header {
+    padding: 0 15px;
+}
+
+.columns {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin: 5px 0;
+}
+
+.column {
+    flex: 1;
+    border: 1px solid gray;
+    margin: 2px;
+    padding: 10px;
+    &:first-child;
+
+{
+    margin-left: 0;
+}
+
+&:last-child {
+    margin-right: 0;
+}
+
+}
+
+
+@media screen and (max-width: 980px) {
+    .columns .column {
+        margin-bottom: 5px;
+        flex-basis: 40%;
+        &:nth-last-child(2)
+
+
+{
+    margin-right: 0;
+}
+
+&:last-child {
+    flex-basis: 100%;
+    margin: 0;
+}
+
+}
+}
+
+@media screen and (max-width: 680px) {
+    .columns .column {
+        flex-basis: 100%;
+        margin: 0 0 5px 0;
+        border-bottom-color: aqua;
+    }
+}
+
+/*---------------------------------------------------------------
+~~~~~~~~~~~-----------BOTONES ----------------~~~~~~~~~~~~~~
+-----por su formado ID, para no afectar al NavBar que tmb tiene boton--------
+-----------------------------------------------------------------*/
+
+.personal {
+    font-family: Forte;
+    font-size: large;
+    border-radius: 9px;
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    background: linear-gradient(to right, #487fee, #32fa95);
+}
+
+.botonBuscar {
+    display: inline-block;
+    border-radius: 4px;
+    background: #f4511e;
+    background-color: #f4511e;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    max-width: 100%;
+}
+
+#fechaHoy {
+    width: 100%;
+}
+
+#calendario {
+    width: 70%;
+}
+
+select {
+}
+
+
+/*---------------------------------------------------------------
+~~~~~~~~~~~-------------------- MAP ----------------~~~~~~~~~~~~~~
+---------------------------------------------------------------*/
+#map {
+    position: relative;
+    overflow: hidden;
+    height: 200px;
+    width: 100%;
+}
+
+
+
+
+
+/*.................................................................................................................
+...... -------------------------------------->>>> FOTO fondo ----------------------------------- ...................
+.................................................................................................................*/
+/*Hide/rearrange for smaller screens*/
+@media screen and (max-width: 767px) {
+    Hide captions
+    .carousel-caption {
+        display: none;
+    }
+}
+
+#cabecera {
+    /*Image url*/
+    background-image: url(https://www.mexticket.com/wp-content/uploads/2017/02/CONCIERTO-MEXTICKET.png);
+    /*Para dejar la imagen de fondo centrada, vertical y horizontalmente*/
+    background-position: center center;
+    /*Para que la imagen de fondo no se repita*/
+    background-repeat: no-repeat;
+    /*La imagen se fija en la ventana de visualización para que la altura de la imagen no supere a la del contenido*/
+    background-attachment: fixed;
+    /*La imagen de fondo se reescala automáticamente con el cambio del ancho de ventana del navegador*/
+    background-size: cover;
+    /*Se muestra un color de fondo mientras se está cargando la imagen*/
+    /*de fondo o si hay problemas para cargarla*/
+    background-color: black;
+}
+
+
+
+/*---------------------------------------------------------------
+---------------------------------------------------------------*/
+#barraMenuTop {
+    background-color: green;
+    font-family: Batang;
+}
+
+

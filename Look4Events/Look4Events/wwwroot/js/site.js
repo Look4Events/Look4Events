@@ -68,7 +68,6 @@ function showPosition(position) {
 
     $.ajax({
         type: "GET",
-        //url: "https://app.ticketmaster.com/discovery/v2/events.json?apikey=h3I9tWkebYWN4j7RUCINFghyZEoQMjMi&latlong=" + latlon,
         url: "https://app.ticketmaster.com/discovery/v2/events.json?apikey=h3I9tWkebYWN4j7RUCINFghyZEoQMjMi&city=Bilbao",
         async: true,
         dataType: "json",
@@ -79,7 +78,14 @@ function showPosition(position) {
             console.log(listadoResultados);
             for (let i = 0; i < listadoResultados.length; i++) { //prueba para ver que llega la informacion
                 console.log(listadoResultados[i].name);
-            //    console.log(listadoResultados[i].dates.start.localDate);
+                console.log(listadoResultados[i].type);
+                console.log(listadoResultados[i].url);
+                console.log(listadoResultados[i].classifications);
+                console.log(listadoResultados[i].dates.start.localDate);
+                console.log(listadoResultados[i].dates.start.localTime);
+                console.log(listadoResultados[i].images);
+                console.log();
+            //console.log(listadoResultados[i].dates.start.localDate);
                 //document.getElementById("filaResults").appendChild(parrafo);
             }
 
@@ -137,6 +143,7 @@ function showEvents(json) {
             
         }
         document.getElementById("filaResults").appendChild(parrafo);
+        console.log()
     }
 }
 

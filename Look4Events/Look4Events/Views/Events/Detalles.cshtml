@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewData["Title"] = "Detalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/css/detalles.css" />
+
+<h2>Detalles</h2>
+
+<div class="img-responsive" id="cabecera">
+    <div>
+        <a href=""><img class="img-responsive" src="http://bbkbootcamp.com/wp-content/uploads/2015/03/cropped-C4J_LOGO_512px_Prueba_1.png" /></a>
+    </div>
+    <div id="title">
+        @*<h1 class="title">Home</h1>*@
+    </div>
+    <hr class="second" />
+</div>
+
+<div>
+
+</div>
+@*ääääääääää_______lugar donde se muestra el mapa______äääääääääääääääää*@
+
+<p id="location">AQUÍ MAPA</p>
+<div id="map"></div>
+
+@*-----------------------------------------------------------------------------*@
+<div class="wrapper">
+
+    <header>
+        <h2>Eventos:</h2>
+    </header>
+
+    <section id="filaResults" class="columns">
+
+    </section>
+
+
+</div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzOE1r9lPnWrVImmRrp_P4LjHVfbZO7Hs" async defer></script>

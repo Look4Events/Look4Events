@@ -1,12 +1,32 @@
-﻿
-@*@model Look4Events.Models.Events.Event*@
+﻿@*@model Look4Events.Models.Events.Event*@
 @model IEnumerable<Look4Events.Models.Events.Event>
 
 @{
     ViewData["Title"] = "Prueba";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+@*ääääääääää_______lugar donde se muestra el mapa______äääääääääääääääää*@
+
+<p id="location">AQUÍ MAPA</p>
+<div id="map"></div>
+<div id="events"></div>
+
+@*-----------------------------------------------------------------------------*@
+<div class="wrapper">
+
+    <header>
+        <h2>Eventos:</h2>
+    </header>
+
+    <section id="filaResults" class="columns">
+
+        @*<div class="column">*@
+        @*<ul id="filaResults" class=list-group></ul>*@
+        @*</div>*@
+    </section>
+</div>
 
 
 @*ääääääääää_______template de tabla responsive______äääääääääääääääää*@
@@ -86,7 +106,7 @@
                                 @Html.DisplayFor(modelItem => item.Type)
                             </td>
                             <td>
-                                
+
                                 <a href=" @Html.DisplayFor(modelItem => item.Url)" target="_blank">@Html.DisplayFor(modelItem => item.Url)</a>
                             </td>
                             <TD>
@@ -120,4 +140,4 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-<script></script>
+<script src="~/js/detalles.js"></script>
