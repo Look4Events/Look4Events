@@ -109,6 +109,32 @@ function searchByDateShowPosition() {
     });
 }
 
+
+function searchByKeyword() {
+
+    let keyword = document.getElementById("keyword").value;
+    $.ajax({
+        type: "GET",
+        url: "https://app.ticketmaster.com/discovery/v2/events?apikey=h3I9tWkebYWN4j7RUCINFghyZEoQMjMi&keyword="
+            +keyword,
+        async: true,
+        dataType: "json",
+        success: function (json) {
+            let events = json._embedded.events;
+            console.log(events);
+            let e = document.getElementById("events");
+            e.innerHTML = json.page.totalElements + " events found.";
+            showEvents(events);
+            jsonSaved = json;
+            initMap(positionActual, events);
+        },
+        error: function (xhr, status, err) {
+            console.log(err);
+        }
+    });
+   
+}
+
 function showEvents(events) {
     for (let i = 0; i < events.length; i++) {
 
