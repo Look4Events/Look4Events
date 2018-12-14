@@ -37,7 +37,7 @@
                 <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Look4Events</a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav" id="navABC">
+                <ul class="nav navbar-nav" id="barraMenuTop">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
@@ -106,14 +106,17 @@
                             <input type="search" id="miBusqueda" name="q"
                                    placeholder="Buscar por keyword..."
                                    aria-label="Buscar en el contenido del sitio">
-                            <button onclick="initMap()">Buscar</button>
+                            <button class="botonBuscar" onclick="initMap()">Buscar</button>
                         </div>
                     </form>
                 </p>
             </div>
             <div class="column">
+                <p>Today: @DateTime.Now.Day / @DateTime.Now.Month / @DateTime.Now.Year</p>
+                <p></p>
                 <p class="custom-select">
-                    <input type="date" id="calendario" />
+                    FROM: <input type="date" id="calendario" />
+                    TO: <input type="date" id="calendario" />
                 </p>
             </div>
             @*------------------.  otro filtro si llegamos a poner mas  .----------------*@

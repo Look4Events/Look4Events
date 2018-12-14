@@ -36,10 +36,18 @@ body {
         display: none;
     }
 }
-/*++++++++++tabla responsive +++++++++++++*/
-/* 
-Generic Styling, for Desktops/Laptops 
-*/
+
+/*.................................................................................................................
+...... hasta aqui venia por defecto content label x-ms-webview plantilla (todo lo de arriba) ...................
+.................................................................................................................*/
+
+
+
+/*.................................................................................................................
+...... ----------------------_______ tabla responsive _______ ---------------------- ...................
+.................................................................................................................*/
+
+/* Generic Styling, for Desktops/Laptops */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -225,7 +233,7 @@ svg {
 .wrapper {
     padding: 5px;
     max-width: 960px;
-    width: 95%;
+    width: 100%;
     margin: 20px auto;
 }
 
@@ -289,8 +297,42 @@ footer {
 }
 
 /*-----------------------------------------------------*/
+button {
+    font-family: Forte;
+    font-size: large;
+    border-radius: 9px;
+    border: none;
+    outline: none;
+    max-width:33%;
+    /*width: 193px;
+    height: 100%;*/
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    background: linear-gradient(to right, #487fee, #32fa95);
+}
+.botonBuscar {
+    display: inline-block;
+    border-radius: 4px;
+    background: #f4511e;
+    background-color: #f4511e;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    max-width:100%;
+}
+
+
 /* Small devices (tablets, 768px and up) */
-@media screen and (max-width: 680px) {
+/*@media screen and (max-width: 680px) {
     button {
         font-family: Forte;
         font-size: large;
@@ -306,10 +348,10 @@ footer {
         text-transform: uppercase;
         background: linear-gradient(to right, #487fee, #32fa95);
     }
-}
+}*/
 
 /* Medium devices (desktops, 992px and up) */
-@media screen and (max-width: 980px) {
+/*@media screen and (max-width: 980px) {
     button {
         font-family: Symbol;
         font-size: large;
@@ -325,10 +367,10 @@ footer {
         text-transform: uppercase;
         background: linear-gradient(to right, #487fee, #32fa95);
     }
-}
+}*/
 
 /* Large devices (large desktops, 1200px and up) */
-@media (min-width: @screen-lg-min) {
+/*@media (min-width: @screen-lg-min) {
     button {
         font-family: Garamond;
         font-size: large;
@@ -344,15 +386,13 @@ footer {
         text-transform: uppercase;
         background: linear-gradient(to right, #487fee, #32fa95);
     }
-}
-
-
+}*/
 
 select {
 }
 
 /*reloj*/
-    #miReloj {
+/* #miReloj {
         font-family: 'Arial Rounded MT';
         text-align: center;
         text-decoration: overline;
@@ -366,23 +406,25 @@ select {
         top: 1px;
         left: 0;
         
-    }
+    }*/
 
-#navABC{
-    background-color:green;
-    font-family:Batang;
+#barraMenuTop {
+    background-color: green;
+    font-family: Batang;
 }
 
 
-/*-----------------------------------------------*/
 
 
-/*------------------------------------------------*/
-.social {
-    position: fixed; /* Hacemos que la posición en pantalla sea fija para que siempre se muestre en pantalla*/
-    left: 0; /* Establecemos la barra en la izquierda */
-    top: 200px; /* Bajamos la barra 200px de arriba a abajo */
-    z-index: 2000; /* Utilizamos la propiedad z-index para que no se superponga algún otro elemento como sliders, galerías, etc */
+
+/*.................................................................................................................
+...... ------------------------------- BARRA SOCIAL MEDIA 8 APARECE PERO ME FALTA PONER LOS ICONOS ----------------------------------- 
+.................................................................................................................*/
+/*.social {
+    position: fixed; /* Hacemos que la posición en pantalla sea fija para que siempre se muestre en pantalla
+    left: 0;  Establecemos la barra en la izquierda 
+    top: 200px;  Bajamos la barra 200px de arriba a abajo 
+    z-index: 2000;  Utilizamos la propiedad z-index para que no se superponga algún otro elemento como sliders, galerías, etc 
 }
 
     .social ul {
@@ -397,14 +439,14 @@ select {
             text-decoration: none;
             -webkit-transition: all 500ms ease;
             -o-transition: all 500ms ease;
-            transition: all 500ms ease; /* Establecemos una transición a todas las propiedades */
+            transition: all 500ms ease;  Establecemos una transición a todas las propiedades 
         }
 
         .social ul li .icon-facebook {
             background: #3b5998;
-            list-style-image:"imagenes/fb.png";
+            list-style-image:"imagenes/fb";
         }
-        /* Establecemos los colores de cada red social, aprovechando su class */
+         Establecemos los colores de cada red social, aprovechando su class 
         .social ul li .icon-twitter {
             background: #00abf0;
         }
@@ -422,14 +464,20 @@ select {
         }
 
         .social ul li a:hover {
-            background: #000; /* Cambiamos el fondo cuando el usuario pase el mouse */
-            padding: 10px 30px; /* Hacemos mas grande el espacio cuando el usuario pase el mouse */
-        }
+            background: #000;  Cambiamos el fondo cuando el usuario pase el mouse 
+            padding: 10px 30px;  Hacemos mas grande el espacio cuando el usuario pase el mouse 
+        }*/
 
-/*----------------- aside ------------------------*/
-@media screen and (max-width: 767px) {
+
+
+
+
+/*.................................................................................................................
+...... ------------------------------ ASIDE/ Side-Bar (lo quito de momento) ----------------------------------- ...................
+.................................................................................................................*/
+/*@media screen and (max-width: 767px) {
     /* Hide captions */
-    #sidebar
+    /*#sidebar
 
 {
     display: none;
@@ -443,12 +491,45 @@ select {
     padding: 10px;
     border: dotted 5px red;
     width: 180px;
-}
+}*/
 
 
+
+
+
+
+
+/*~~~~~~~~~~~-------------------- MAP ----------------~~~~~~~~~~~~~~*/
 #map {
     position: relative;
     overflow: hidden;
     height: 200px;
     width:100%;
+}
+
+
+
+
+
+
+
+
+/*.................................................................................................................
+...... -------------------------------------->>>> FOTO fondo ----------------------------------- ...................
+.................................................................................................................*/
+#cabecera {
+    /* Image url */
+    background-image: url(https://www.mexticket.com/wp-content/uploads/2017/02/CONCIERTO-MEXTICKET.png);
+    /* Para dejar la imagen de fondo centrada, vertical y horizontalmente */
+    background-position: center center;
+    /* Para que la imagen de fondo no se repita */
+    background-repeat: no-repeat;
+    /* La imagen se fija en la ventana de visualización para que la altura de la imagen no supere a la del contenido */
+    background-attachment: fixed;
+    /* La imagen de fondo se reescala automáticamente con el cambio del ancho de ventana del navegador */
+    background-size: cover;
+    /* Se muestra un color de fondo mientras se está cargando la imagen
+
+de fondo o si hay problemas para cargarla */
+    background-color: black;
 }

@@ -114,16 +114,16 @@ function showEvents(json) {
 
         // creo un div, les incluyo el titulo y el parrafo
         let celdaEvento = document.createElement("button");
-        celdaEvento.setAttribute("class", "col-xs-8 col-sm-6 col-md-4 personal");
         //<button id="volver" onclick="location.href='page2.html'">page2</button>
         celdaEvento.setAttribute("onclick", "location.href='/Home/Prueba'");
+        celdaEvento.setAttribute("class", "personal");
         celdaEvento.appendChild(elementoTitulo);
         celdaEvento.appendChild(elementoParrafo);
         
         
         //let texto = document.createTextNode(json[i].name);
         let parrafo = document.createElement("div");
-        //parrafo.setAttribute("class", "col-xs-4");
+        parrafo.setAttribute("class", "colum");
         parrafo.appendChild(celdaEvento);
         //let filaResults = document.getElementById("filaResults");
 
@@ -131,7 +131,7 @@ function showEvents(json) {
         //document.getElementById("filaResults").appendChild(parrafo);
         if (i % 3 === 0) {
             let elementoFila = document.createElement("div");
-            elementoFila.setAttribute("class", "row col-xs-8 col-sm-6 col-md-4");
+            elementoFila.setAttribute("class", "row col-xs-4");
             elementoFila.appendChild(celdaEvento);
             
         }
