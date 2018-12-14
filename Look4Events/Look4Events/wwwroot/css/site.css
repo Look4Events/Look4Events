@@ -40,7 +40,9 @@ body {
 /*.................................................................................................................
 ...... hasta aqui venia por defecto content label x-ms-webview plantilla (todo lo de arriba) ...................
 .................................................................................................................*/
-
+footer {
+    padding: 0 15px;
+}
 
 
 /*.................................................................................................................
@@ -235,6 +237,7 @@ svg {
     max-width: 960px;
     width: 100%;
     margin: 20px auto;
+
 }
 
 header {
@@ -246,6 +249,7 @@ header {
     flex-flow: row wrap;
     justify-content: center;
     margin: 5px 0;
+
 }
 
 .column {
@@ -265,16 +269,14 @@ header {
 
 }
 
-footer {
-    padding: 0 15px;
-}
-
 
 @media screen and (max-width: 980px) {
     .columns .column {
+
         margin-bottom: 5px;
         flex-basis: 40%;
         &:nth-last-child(2)
+        
 
 {
     margin-right: 0;
@@ -293,19 +295,25 @@ footer {
         flex-basis: 100%;
         margin: 0 0 5px 0;
         border-bottom-color: aqua;
+
     }
 }
 
-/*-----------------------------------------------------*/
-button {
+/*---------------------------------------------------------------
+~~~~~~~~~~~-----------BOTONES ----------------~~~~~~~~~~~~~~
+-----por su formado ID, para no afectar al NavBar que tmb tiene boton--------
+-----------------------------------------------------------------*/
+
+.personal {
     font-family: Forte;
     font-size: large;
     border-radius: 9px;
     border: none;
     outline: none;
-    max-width:33%;
     /*width: 193px;
     height: 100%;*/
+    width:100%;
+    height:100%;
     cursor: pointer;
     font-size: 14px;
     font-weight: 700;
@@ -330,66 +338,70 @@ button {
     max-width:100%;
 }
 
-
-/* Small devices (tablets, 768px and up) */
-/*@media screen and (max-width: 680px) {
-    button {
-        font-family: Forte;
-        font-size: large;
-        border-radius: 9px;
-        border: none;
-        outline: none;
-        width: 193px;
-        height: 100%;
-        cursor: pointer;
-        font-size: 14px;
-        font-weight: 700;
-        color: #FFFFFF;
-        text-transform: uppercase;
-        background: linear-gradient(to right, #487fee, #32fa95);
-    }
-}*/
-
-/* Medium devices (desktops, 992px and up) */
-/*@media screen and (max-width: 980px) {
-    button {
-        font-family: Symbol;
-        font-size: large;
-        border-radius: 9px;
-        border: none;
-        outline: none;
-        width: 193px;
-        height: 100%;
-        cursor: pointer;
-        font-size: 14px;
-        font-weight: 700;
-        color: #FFFFFF;
-        text-transform: uppercase;
-        background: linear-gradient(to right, #487fee, #32fa95);
-    }
-}*/
-
-/* Large devices (large desktops, 1200px and up) */
-/*@media (min-width: @screen-lg-min) {
-    button {
-        font-family: Garamond;
-        font-size: large;
-        border-radius: 9px;
-        border: none;
-        outline: none;
-        width: 193px;
-        height: 100%;
-        cursor: pointer;
-        font-size: 14px;
-        font-weight: 700;
-        color: #FFFFFF;
-        text-transform: uppercase;
-        background: linear-gradient(to right, #487fee, #32fa95);
-    }
-}*/
-
 select {
 }
+
+
+/*---------------------------------------------------------------
+~~~~~~~~~~~-------------------- MAP ----------------~~~~~~~~~~~~~~
+---------------------------------------------------------------*/
+#map {
+    position: relative;
+    overflow: hidden;
+    height: 200px;
+    width: 100%;
+}
+
+
+
+
+
+/*.................................................................................................................
+...... -------------------------------------->>>> FOTO fondo ----------------------------------- ...................
+.................................................................................................................*/
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}
+#cabecera {
+    /* Image url */
+    background-image: url(https://www.mexticket.com/wp-content/uploads/2017/02/CONCIERTO-MEXTICKET.png);
+    /* Para dejar la imagen de fondo centrada, vertical y horizontalmente */
+    background-position: center center;
+    /* Para que la imagen de fondo no se repita */
+    background-repeat: no-repeat;
+    /* La imagen se fija en la ventana de visualización para que la altura de la imagen no supere a la del contenido */
+    background-attachment: fixed;
+    /* La imagen de fondo se reescala automáticamente con el cambio del ancho de ventana del navegador */
+    background-size: cover;
+    /* Se muestra un color de fondo mientras se está cargando la imagen
+
+de fondo o si hay problemas para cargarla */
+    background-color: black;
+}
+
+
+
+/*---------------------------------------------------------------
+---------------------------------------------------------------*/
+#barraMenuTop {
+    /*background-color: green;*/
+    font-family: Batang;
+}
+
+
+
+/*---------------------------------------------------------------
+---------------------------------------------------------------*/
+
+
+
+
+
+
 
 /*reloj*/
 /* #miReloj {
@@ -407,12 +419,6 @@ select {
         left: 0;
         
     }*/
-
-#barraMenuTop {
-    background-color: green;
-    font-family: Batang;
-}
-
 
 
 
@@ -492,44 +498,3 @@ select {
     border: dotted 5px red;
     width: 180px;
 }*/
-
-
-
-
-
-
-
-/*~~~~~~~~~~~-------------------- MAP ----------------~~~~~~~~~~~~~~*/
-#map {
-    position: relative;
-    overflow: hidden;
-    height: 200px;
-    width:100%;
-}
-
-
-
-
-
-
-
-
-/*.................................................................................................................
-...... -------------------------------------->>>> FOTO fondo ----------------------------------- ...................
-.................................................................................................................*/
-#cabecera {
-    /* Image url */
-    background-image: url(https://www.mexticket.com/wp-content/uploads/2017/02/CONCIERTO-MEXTICKET.png);
-    /* Para dejar la imagen de fondo centrada, vertical y horizontalmente */
-    background-position: center center;
-    /* Para que la imagen de fondo no se repita */
-    background-repeat: no-repeat;
-    /* La imagen se fija en la ventana de visualización para que la altura de la imagen no supere a la del contenido */
-    background-attachment: fixed;
-    /* La imagen de fondo se reescala automáticamente con el cambio del ancho de ventana del navegador */
-    background-size: cover;
-    /* Se muestra un color de fondo mientras se está cargando la imagen
-
-de fondo o si hay problemas para cargarla */
-    background-color: black;
-}

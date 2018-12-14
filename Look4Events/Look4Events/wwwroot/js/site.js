@@ -123,19 +123,20 @@ function showEvents(json) {
         
         //let texto = document.createTextNode(json[i].name);
         let parrafo = document.createElement("div");
-        parrafo.setAttribute("class", "colum");
+        parrafo.setAttribute("class", "column");
         parrafo.appendChild(celdaEvento);
         //let filaResults = document.getElementById("filaResults");
 
         //filaResults.appendChild(parrafo);
         //document.getElementById("filaResults").appendChild(parrafo);
+        
         if (i % 3 === 0) {
             let elementoFila = document.createElement("div");
             elementoFila.setAttribute("class", "row col-xs-4");
-            elementoFila.appendChild(celdaEvento);
+            elementoFila.appendChild(parrafo);
             
         }
-        document.getElementById("filaResults").appendChild(celdaEvento);
+        document.getElementById("filaResults").appendChild(parrafo);
     }
 }
 
