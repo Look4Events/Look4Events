@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -36,7 +38,7 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
                     <li><a asp-area="" asp-controller="Events" asp-action="Index">Events</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Prueba">Prueba</a></li>
-                
+
                 </ul>
                 <partial name="_LoginPartial" />
             </div>
@@ -92,11 +94,16 @@
             <div class="column">
                 <p>
                     <form name="formulario">
-                        <input type="radio" name="TipoDeVista" value="verListado" checked> ver Listado<br />
-                        <input type="radio" name="TipoDeVista" value="verMapa"> ver Mapa<br />
+                        <input type="radio"  onclick="listadoOn()";" id="listado" name="TipoDeVista" value="verListado" checked> ver Listado<br />
+                        <input type="radio"  onclick="listadoOff()" id="mapa" name="TipoDeVista" value="verMapa"> ver Mapa<br />
                     </form>
+
+
                 </p>
             </div>
+
+            @*</div>*@
+
             <div class="column">
                 <p>
                     <select form-group>
@@ -138,7 +145,6 @@
         <script src="~/js/site.js" asp-append-version="true"></script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzOE1r9lPnWrVImmRrp_P4LjHVfbZO7Hs" async defer></script>
 </body>

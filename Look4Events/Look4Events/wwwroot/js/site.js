@@ -32,6 +32,7 @@ function showError(error) {
             break;
     }
 }
+
 function showPosition(position) {
     console.log()
     x = document.getElementById("location");
@@ -110,7 +111,53 @@ function searchByDateShowPosition() {
 }
 
 function showEvents(events) {
+    //let listaImagenesDeEventos = [];
     for (let i = 0; i < events.length; i++) {
+        
+        console.log(events[i].name);
+        console.log(events[i].type);
+        console.log(events[i].url);
+        console.log(events[i].classifications);
+        console.log(events[i].dates.start.localDate);
+        console.log(events[i].dates.start.localTime);
+        console.log(events[i].images);
+        console.log();
+        //...........................................
+        //let ResultadoImagen = events[i].images;
+
+        //listaImagenesDeEventos.push
+        //    ({ imagen1: ResultadoImagen[0] });
+
+
+
+
+
+
+
+
+        //saco array "classifications"
+        //let genero = [];
+        //for (let j = 0; j < events[i].classifications.length; j++) {
+        //    let genre = (events[i].classifications[j].genre.name)
+        //    console.log(events[i].classifications[j].segment.name)
+        //    console.log(events[i].classifications[j].subGenre.name)
+        //}
+        //genero.push({})
+
+        ////saco array "images"
+        //for (let j = 0; j < events[i].images.length; j++) {
+        //    let image = (events[i].images[j].url)
+        //}
+
+        ////creo elemento foto
+        let urlImagen = events[i].images[0].url;
+        let divParaFoto = document.createElement("div");
+        let elementoFoto = document.createElement("img");
+        divParaFoto.setAttribute("class", "fotoEvento");
+        elementoFoto.setAttribute("src", urlImagen);
+        divParaFoto.appendChild(elementoFoto)
+        console.log(events[i].images)
+            //< div class="col-md-4" > <img src="imagenPrueba/2.jpg" alt="" class="img-responsive" style="overflow: hidden"></div>
 
         // creo elemento titulo
         let elementoTitulo = document.createElement("h3");
@@ -125,12 +172,16 @@ function showEvents(events) {
 
         // creo un div, les incluyo el titulo y el parrafo
         let celdaEvento = document.createElement("button");
-
         celdaEvento.setAttribute("onclick", "location.href='/Home/Prueba'");
         celdaEvento.setAttribute("class", "personal");
+        celdaEvento.appendChild(divParaFoto);
         celdaEvento.appendChild(elementoTitulo);
         celdaEvento.appendChild(elementoParrafo);
 
+        //creo un div para unir lo anterior, a la imagen
+        //let cuadradito = document.createElement("div");
+        //cuadradito.appendChild(celdaEvento);
+        //cuadradito.appendChild(imagenFoto);
 
 
         let parrafo = document.createElement("div");
@@ -190,3 +241,70 @@ function addMarker(map, event) {
     console.log(marker);
 }
 getLocation();
+
+//var optionTarget;
+
+//$(":radio").click(function (e) {
+//    e.preventDefault();
+//    optionTarget = e.target;
+//    $("#change-view").show();
+//    $("#map").show();
+//});
+
+//$("#change-view button").click(function () {
+//    $("#change-view").hide();
+//    $("#map").hide();
+//});
+
+//$("#view-btn").click(function () {
+//    $(optionTarget).prop('checked', true);
+//});
+
+
+
+
+
+
+
+
+
+//var FormStuff = {
+
+//    init: function () {
+////        // kick it off once, in case the radio is already checked when the page loads
+//        this.conditionMap();
+//        this.whenConditionChanges();
+//    },
+
+//    whenConditionChanges: function () {
+////        // when a radio or checkbox changes value, click or otherwise
+//        $("input[type='radio']").on("change", this.conditionMap);
+//    },
+
+//    conditionMap: function () {
+//        // find each input that may be hidden or not
+//        $(".require-if-active").each(function () {
+//            var el = $(this);
+//            // find the pairing radio or checkbox
+//            if ($(el.data("require-pair")).is(":checked")) {
+//                // if its checked, the field should be required
+//                el.prop("required", true);
+//            } else {
+//                // otherwise it should not
+//                el.prop("required", false);
+//            }
+//        });
+//    }
+
+//};
+//FormStuff.init();
+
+function listadoOn() {
+    $("#filaResults").show();
+    $("#map").hide();
+}
+
+function listadoOff() {
+    $("#filaResults").hide();
+    $("#map").show();
+}

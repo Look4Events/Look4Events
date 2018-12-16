@@ -239,7 +239,7 @@ svg {
     padding: 5px;
     max-width: 960px;
     width: 100%;
-    margin: 20px auto;
+    margin: 10px auto;
 }
 
 header {
@@ -254,19 +254,10 @@ header {
 }
 
 .column {
-    flex: 1;
+    flex: 1 0 40%;
     border: 1px solid gray;
     margin: 2px;
     padding: 10px;
-    &:first-child;
-
-{
-    margin-left: 0;
-}
-
-&:last-child {
-    margin-right: 0;
-}
 
 }
 
@@ -275,19 +266,8 @@ header {
     .columns .column {
         margin-bottom: 5px;
         flex-basis: 40%;
-        &:nth-last-child(2)
 
-
-{
-    margin-right: 0;
-}
-
-&:last-child {
-    flex-basis: 100%;
-    margin: 0;
-}
-
-}
+    }
 }
 
 @media screen and (max-width: 680px) {
@@ -395,4 +375,47 @@ select {
 ---------------------------------------------------------------*/
 #barraMenuTop {
     font-family: Batang;
+}
+
+
+/*#change-view {
+    display: none;
+    border: 1px solid red;
+    background-color: #cef;
+    padding: 30px;
+}*/
+
+
+/*.............................*/
+/*.reveal-if-active {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+}*/
+/*input[type="radio"]:checked ~ .reveal-if-active
+{
+    opacity: 1;
+    max-height: 100px;
+    overflow: visible;
+}*/
+
+/*.reveal-if-active {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transform: scale(0.8);
+    transition: 0.5s;
+}*/
+
+    /*input [type="radio"]:checked
+{
+    opacity: 1;
+    max-height: 100px;
+    overflow: visible;
+    padding: 10px 20px;
+    transform: scale(1);
+}*/
+
+.fotoEvento img{
+    width:100px;
 }

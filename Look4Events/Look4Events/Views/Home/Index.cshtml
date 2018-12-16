@@ -2,6 +2,8 @@
     ViewData["Title"] = "Home Page";
 }
 <link rel="stylesheet" href="~/css/site.css" />
+
+@*--------------------------- image fondo --------------------------------------------------*@
 <div class="img-responsive" id="cabecera">
     <div>
         <a href=""><img class="img-responsive" src="http://bbkbootcamp.com/wp-content/uploads/2015/03/cropped-C4J_LOGO_512px_Prueba_1.png" /></a>
@@ -11,20 +13,41 @@
     </div>
     <hr class="second" />
 </div>
+
+@*-----------------------------------------------------------------------------*@
 <div>
 </div>
+
+
+@*<input type="radio" name="" 
+<input type="radio" name="TipoDeVista" value="verMapa"> ver Mapa<br />*@
+
+
+@*<input type="radio" onclick="handleClick(this);"  id="listado"  name="TipoDeVista" value="verListado" checked> Ver en lista<br />
+<div class="reveal-if-active"id="filaResults">
+            <h2>Eventos:</h2>
+            <section id="filaResults" class="columns">
+        </section>
+</div>
+
+<div>
+    <input type="radio"  onclick="handleClick(this);" id="mapa" name="TipoDeVista"  value="verMapa"> Ver en mapa<br />
+
+    <div id="map" class="reveal-if-active"> no sale mapa???
+        <p id="location">AQUÍ MAPA</p>
+    </div>
+</div>*@
+
+
 @*ääääääääää_______lugar donde se muestra el mapa______äääääääääääääääää*@
 <p id="location">AQUÍ MAPA</p>
-<div id="map"></div>
-<div id="events"></div>
+    <div id="map"></div>
+    <div id="events"></div>
 @*-----------------------------------------------------------------------------*@
-<div class="wrapper">
-    <header>
-        <h2>Eventos:</h2>
-    </header>
-    <section id="filaResults" class="columns">
-        @*<div class="column">*@
-        @*<ul id="filaResults" class=list-group></ul>*@
-        @*</div>*@
-    </section>
-</div>
+<div>
+        <header>
+            <h2>Eventos:</h2>
+        </header>
+        <section id="filaResults" class="columns">
+        </section>
+    </div>
