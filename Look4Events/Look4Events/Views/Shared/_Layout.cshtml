@@ -62,6 +62,9 @@
             </svg>
         </header>
     </div>
+
+
+
     @*ääääääääää_______template de tabla responsive______äääääääääääääääää*@
     <div class="wrapper">
         <header>
@@ -90,17 +93,26 @@
                     <button id="BuscarporFecha" onclick="searchByDateShowPosition()">Buscar</button>
                 </p>
             </div>
-
             <div class="column">
-                <p>
-                    <form name="formulario">
-                        <input type="radio"  onclick="listadoOn()";" id="listado" name="TipoDeVista" value="verListado" checked> ver Listado<br />
-                        <input type="radio"  onclick="listadoOff()" id="mapa" name="TipoDeVista" value="verMapa"> ver Mapa<br />
-                    </form>
-
-
-                </p>
+                <label>
+                    <input type="radio" onclick="listadoOn()" class="option-input radio" name="example" checked />
+                    ver Listado<br />
+                </label>
+                <label>
+                    <input type="radio" onclick="listadoOff()" class="option-input radio" name="example" />
+                    ver Mapa<br />
+                </label>
             </div>
+            @*<div class="column">
+            <p>
+                <form name="formulario">
+                    <input type="radio" onclick="listadoOn()" ;" id="listado" name="TipoDeVista" value="verListado" checked> ver Listado<br />
+                    <input type="radio" onclick="listadoOff()" id="mapa" name="TipoDeVista" value="verMapa"> ver Mapa<br />
+                </form>
+
+
+            </p>
+        </div>*@
 
             @*</div>*@
 

@@ -86,6 +86,8 @@ $('#fechaFin').on('click', function () {
     fechaFin = { year: year, month: month, day: day };
     fechFin = fechaFin.year + "-" + fechaFin.month + "-" + fechaFin.day;
 });
+
+
 function searchByDateShowPosition() {
     latlon = positionActual.coords.latitude + "," + positionActual.coords.longitude;
     radius = "&radius=50&unit=km"
@@ -123,31 +125,47 @@ function showEvents(events) {
         console.log(events[i].images);
         console.log();
         //...........................................
-        //let ResultadoImagen = events[i].images;
-
-        //listaImagenesDeEventos.push
-        //    ({ imagen1: ResultadoImagen[0] });
 
 
 
 
+        //creo elemento genero
+        let genero = events[i].classifications[0].genre.name;
+        let segmento = events[i].classifications[0].segment.name;
+        let subGenero = events[i].classifications[0].subGenre.name;
+
+        //asigno clase para cambiar estilo en funcion del genero
+        let divParaGenero = document.createElement("div");
+        if (genero == "Rock") {
+            divParaGenero.setAttribute("class", "tipoRock")
+        }
+        else if (genero == "Alternative") {
+            divParaGenero.setAttribute("class", "tipoAlternativo")
+        }
+        else if (genero == "Hip-Hop/Rap") {
+            divParaGenero.setAttribute("class", "tipoHipHopRap")
+        }
+        else {
+            divParaGenero.setAttribute("class", "tipoOtros")
+        }
+        //...........................................
 
 
+        let divParaSegmento = document.createElement("div");
+        let divParaSubGenero = document.createElement("div");
+        let divParaInfoGenero = document.createElement("div");
 
+        let textoGenero = document.createTextNode(genero);
+        let textoSegmento = document.createTextNode(segmento);
+        let textoSubGenero = document.createTextNode(subGenero);
 
-        //saco array "classifications"
-        //let genero = [];
-        //for (let j = 0; j < events[i].classifications.length; j++) {
-        //    let genre = (events[i].classifications[j].genre.name)
-        //    console.log(events[i].classifications[j].segment.name)
-        //    console.log(events[i].classifications[j].subGenre.name)
-        //}
-        //genero.push({})
+        divParaGenero.appendChild(textoGenero);
+        divParaSegmento.appendChild(textoSegmento);
+        divParaSubGenero.appendChild(textoSubGenero);
 
-        ////saco array "images"
-        //for (let j = 0; j < events[i].images.length; j++) {
-        //    let image = (events[i].images[j].url)
-        //}
+        divParaInfoGenero.appendChild(divParaGenero)
+        divParaInfoGenero.appendChild(divParaSegmento)
+        divParaInfoGenero.appendChild(divParaSubGenero)
 
         ////creo elemento foto
         let urlImagen = events[i].images[0].url;
@@ -157,7 +175,6 @@ function showEvents(events) {
         elementoFoto.setAttribute("src", urlImagen);
         divParaFoto.appendChild(elementoFoto)
         console.log(events[i].images)
-            //< div class="col-md-4" > <img src="imagenPrueba/2.jpg" alt="" class="img-responsive" style="overflow: hidden"></div>
 
         // creo elemento titulo
         let elementoTitulo = document.createElement("h3");
@@ -165,23 +182,42 @@ function showEvents(events) {
         let textoTitulo = document.createTextNode(events[i].name);
         elementoTitulo.appendChild(textoTitulo);
 
+        // creo elemento lugar
+        let elementoLugar = document.createElement("h3");
+        elementoLugar.setAttribute("class", "lugar");
+        let textoLugar = document.createTextNode(events[i]._embedded.venues[0].city.name);
+        elementoLugar.appendChild(textoLugar);
+
+        // creo elemento fecha
+        let elementoFecha = document.createElement("h3");
+        elementoFecha.setAttribute("class", "fecha");
+        let textoFecha = document.createTextNode(events[i].dates.start.localDate);
+        elementoFecha.appendChild(textoFecha);
+
+        // creo elemento hora
+        let elementoHora = document.createElement("h3");
+        elementoHora.setAttribute("class", "hora");
+        let textoHora = document.createTextNode(events[i].dates.start.localTime);
+        elementoHora.appendChild(textoHora);
+
         // creo elemento parrafo
+        //let elementoParrafo = document.createElement("li");
+        //let textoParrafo = document.createTextNode(events[i].dates.start.localDate + " /  Hora: " + events[i].dates.start.localTime + " / Ciudad: " + events[i]._embedded.venues[0].city.name);
+        //elementoParrafo.appendChild(textoParrafo);
+
         let elementoParrafo = document.createElement("li");
-        let textoParrafo = document.createTextNode(events[i].dates.start.localDate + " /  Hora: " + events[i].dates.start.localTime + " / Ciudad: " + events[i]._embedded.venues[0].city.name);
-        elementoParrafo.appendChild(textoParrafo);
+        elementoParrafo.appendChild(elementoLugar);
+        elementoParrafo.appendChild(elementoFecha);
+        elementoParrafo.appendChild(elementoHora);
 
         // creo un div, les incluyo el titulo y el parrafo
         let celdaEvento = document.createElement("button");
         celdaEvento.setAttribute("onclick", "location.href='/Home/Prueba'");
         celdaEvento.setAttribute("class", "personal");
+        celdaEvento.appendChild(divParaInfoGenero);
         celdaEvento.appendChild(divParaFoto);
         celdaEvento.appendChild(elementoTitulo);
         celdaEvento.appendChild(elementoParrafo);
-
-        //creo un div para unir lo anterior, a la imagen
-        //let cuadradito = document.createElement("div");
-        //cuadradito.appendChild(celdaEvento);
-        //cuadradito.appendChild(imagenFoto);
 
 
         let parrafo = document.createElement("div");
@@ -226,7 +262,6 @@ function initMap(position, events) {
 function addMarker(map, event) {
     let marker = new google.maps.Marker({
         position: new google.maps.LatLng(event._embedded.venues[0].location.latitude, event._embedded.venues[0].location.longitude),
-        //infoWindow: new google.maps.InfoWindow({ content: json._embedded.events[i].name }),
         animation: google.maps.Animation.DROP,
         map: map
     });
@@ -242,62 +277,6 @@ function addMarker(map, event) {
 }
 getLocation();
 
-//var optionTarget;
-
-//$(":radio").click(function (e) {
-//    e.preventDefault();
-//    optionTarget = e.target;
-//    $("#change-view").show();
-//    $("#map").show();
-//});
-
-//$("#change-view button").click(function () {
-//    $("#change-view").hide();
-//    $("#map").hide();
-//});
-
-//$("#view-btn").click(function () {
-//    $(optionTarget).prop('checked', true);
-//});
-
-
-
-
-
-
-
-
-
-//var FormStuff = {
-
-//    init: function () {
-////        // kick it off once, in case the radio is already checked when the page loads
-//        this.conditionMap();
-//        this.whenConditionChanges();
-//    },
-
-//    whenConditionChanges: function () {
-////        // when a radio or checkbox changes value, click or otherwise
-//        $("input[type='radio']").on("change", this.conditionMap);
-//    },
-
-//    conditionMap: function () {
-//        // find each input that may be hidden or not
-//        $(".require-if-active").each(function () {
-//            var el = $(this);
-//            // find the pairing radio or checkbox
-//            if ($(el.data("require-pair")).is(":checked")) {
-//                // if its checked, the field should be required
-//                el.prop("required", true);
-//            } else {
-//                // otherwise it should not
-//                el.prop("required", false);
-//            }
-//        });
-//    }
-
-//};
-//FormStuff.init();
 
 function listadoOn() {
     $("#filaResults").show();
