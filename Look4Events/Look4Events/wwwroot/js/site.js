@@ -113,21 +113,26 @@ function searchByDateShowPosition() {
 }
 
 function showEvents(events) {
-    //let listaImagenesDeEventos = [];
     for (let i = 0; i < events.length; i++) {
         
-        console.log(events[i].name);
-        console.log(events[i].type);
-        console.log(events[i].url);
-        console.log(events[i].classifications);
-        console.log(events[i].dates.start.localDate);
-        console.log(events[i].dates.start.localTime);
-        console.log(events[i].images);
-        console.log();
+        //console.log(events[i].name);
+        //console.log(events[i].type);
+        //console.log(events[i].url);
+        //console.log(events[i].classifications);
+        //console.log(events[i].dates.start.localDate);
+        //console.log(events[i].dates.start.localTime);
+        //console.log(events[i].images);
+        //console.log();
         //...........................................
+        
 
-
-
+        //creo elemento URL
+        let UrlEvento = events[i].url;
+        let divParaUrl = document.createElement("div");
+        let elementoUrl = document.createElement("a");
+        elementoUrl.setAttribute("href", UrlEvento)
+        let textoUrl = document.createTextNode(UrlEvento);
+        divParaUrl.appendChild(textoUrl);
 
         //creo elemento genero
         let genero = events[i].classifications[0].genre.name;
@@ -212,17 +217,43 @@ function showEvents(events) {
 
         // creo un div, les incluyo el titulo y el parrafo
         let celdaEvento = document.createElement("button");
-        celdaEvento.setAttribute("onclick", "location.href='/Home/Prueba'");
+        celdaEvento.setAttribute("onclick", "showDetails()")
+        //celdaEvento.setAttribute("onclick", "location.href='/Home/Prueba'");
         celdaEvento.setAttribute("class", "personal");
         celdaEvento.appendChild(divParaInfoGenero);
         celdaEvento.appendChild(divParaFoto);
         celdaEvento.appendChild(elementoTitulo);
-        celdaEvento.appendChild(elementoParrafo);
+        //celdaEvento.appendChild(elementoParrafo);
+        //celdaEvento.appendChild(divParaUrl);
+
+        let divParaBotonVolver = document.createElement("div");
+        let elementoBotonVolver = document.createElement("button");
+        elementoBotonVolver.setAttribute("onclick", "hideDetails()")
+        let textoBotonVolver = document.createTextNode("Volver");
+        elementoBotonVolver.appendChild(textoBotonVolver);
+        divParaBotonVolver.appendChild(elementoBotonVolver)
+
+        // creo un div, les incluyo toda la info detalles de evento
+        let celdaDetalles = document.createElement("div");
+        celdaDetalles.setAttribute("class", "celdaDetalles")
+        //celdaDetalles.setAttribute("class", "personal");
+        //celdaDetalles.appendChild(divParaInfoGenero);
+        //celdaDetalles.appendChild(divParaFoto);
+        //celdaDetalles.appendChild(elementoTitulo);
+        celdaDetalles.appendChild(elementoParrafo);
+        celdaDetalles.appendChild(divParaUrl);
+        celdaDetalles.appendChild(divParaBotonVolver);
+        celdaDetalles.setAttribute("style", "display:none;")
 
 
         let parrafo = document.createElement("div");
         parrafo.setAttribute("class", "column");
         parrafo.appendChild(celdaEvento);
+        parrafo.appendChild(celdaDetalles);
+
+        //let parrafoDetalles = document.createElement("div");
+        //parrafo.setAttribute("class", "column");
+        //parrafo.appendChild(celdaDetalles);
 
 
         if (i % 3 === 0) {
@@ -232,6 +263,7 @@ function showEvents(events) {
 
         }
         document.getElementById("filaResults").appendChild(parrafo);
+        //document.getElementById("filaDetails").appendChild(parrafoDetalles);
         console.log()
     }
 }
@@ -286,4 +318,15 @@ function listadoOn() {
 function listadoOff() {
     $("#filaResults").hide();
     $("#map").show();
+}
+
+function showDetails() {
+
+    $(".celdaDetalles").show();
+
+}
+function hideDetails() {
+
+    $(".celdaDetalles").hide();
+
 }
