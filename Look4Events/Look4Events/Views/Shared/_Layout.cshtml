@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -36,30 +38,43 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
                     <li><a asp-area="" asp-controller="Events" asp-action="Index">Events</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Prueba">Prueba</a></li>
-                
+
                 </ul>
                 <partial name="_LoginPartial" />
             </div>
         </div>
     </nav>
-
-    @*+++++++++++++++++++ titulo multicolor ++++++++++++++++++++++++++++++++++*@
-    <div class="wrapper">
-        <header>
-            <svg viewBox="0 0 960 300">
-                <symbol id="s-text">
-                    <text text-anchor="middle" x="50%" y="80%">Look4Events</text>
-                </symbol>
-                <g class="g-ants">
-                    <use xlink:href="#s-text" class="text-copy"></use>
-                    <use xlink:href="#s-text" class="text-copy"></use>
-                    <use xlink:href="#s-text" class="text-copy"></use>
-                    <use xlink:href="#s-text" class="text-copy"></use>
-                    <use xlink:href="#s-text" class="text-copy"></use>
-                </g>
-            </svg>
-        </header>
+    @*--------------------------- image fondo --------------------------------------------------*@
+    <div class="img-responsive" id="cabecera">
+        <div>
+            <a href=""><img class="img-responsive" src="http://bbkbootcamp.com/wp-content/uploads/2015/03/cropped-C4J_LOGO_512px_Prueba_1.png" /></a>
+        </div>
+        <div id="title">
+            @*<h1 class="title">Home</h1>*@
+        </div>
+        <hr class="second" />
     </div>
+    @*-----------------------------------------------------------------------------*@
+    @*+++++++++++++++++++ titulo multicolor ++++++++++++++++++++++++++++++++++*@
+    @*<div class="wrapper">
+            <header>
+                <svg viewBox="0 0 960 300">
+                    <symbol id="s-text">
+                        <text text-anchor="middle" x="50%" y="80%">Look4Events</text>
+                    </symbol>
+                    <g class="g-ants">
+                        <use xlink:href="#s-text" class="text-copy"></use>
+                        <use xlink:href="#s-text" class="text-copy"></use>
+                        <use xlink:href="#s-text" class="text-copy"></use>
+                        <use xlink:href="#s-text" class="text-copy"></use>
+                        <use xlink:href="#s-text" class="text-copy"></use>
+                    </g>
+                </svg>
+            </header>
+        </div>*@
+
+
+
     @*ääääääääää_______template de tabla responsive______äääääääääääääääää*@
     <div class="wrapper">
         <header>
@@ -68,14 +83,14 @@
         <section class="columns">
             <div class="column">
                 <p>
-                    
+                    <form role="search">
                         <div>
                             <input type="search" id="keyword" 
                                    placeholder="Buscar por keyword..."
                                    aria-label="Buscar en el contenido del sitio">
                             <button class="botonBuscar" onclick="searchByKeyword()">Buscar</button>
                         </div>
-                   
+                    </form>
                 </p>
             </div>
             <div class="column">
@@ -88,15 +103,27 @@
                     <button id="BuscarporFecha" onclick="searchByDateShowPosition()">Buscar</button>
                 </p>
             </div>
-
             <div class="column">
-                <p>
-                    <form name="formulario">
-                        <input type="radio" name="TipoDeVista" value="verListado" checked> ver Listado<br />
-                        <input type="radio" name="TipoDeVista" value="verMapa"> ver Mapa<br />
-                    </form>
-                </p>
+                <label>
+                    <input type="radio" onclick="listadoOn()" class="option-input radio" name="example" checked />
+                    ver Listado<br />
+                </label>
+                <label>
+                    <input type="radio" onclick="listadoOff()" class="option-input radio" name="example" />
+                    ver Mapa<br />
+                </label>
             </div>
+            @*<div class="column">
+                    <p>
+                        <form name="formulario">
+                            <input type="radio" onclick="listadoOn()" ;" id="listado" name="TipoDeVista" value="verListado" checked> ver Listado<br />
+                            <input type="radio" onclick="listadoOff()" id="mapa" name="TipoDeVista" value="verMapa"> ver Mapa<br />
+                        </form>
+                    </p>
+                </div>*@
+
+            @*</div>*@
+
             <div class="column">
                 <p>
                     <select form-group>
@@ -138,7 +165,6 @@
         <script src="~/js/site.js" asp-append-version="true"></script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzOE1r9lPnWrVImmRrp_P4LjHVfbZO7Hs" async defer></script>
 </body>
