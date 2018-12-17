@@ -140,40 +140,42 @@ function showEvents(events) {
         divParaUrl.appendChild(elementoUrl);
 
         //creo elemento genero
-        let genero = events[i].classifications[0].genre.name;
         let segmento = events[i].classifications[0].segment.name;
         let subGenero = events[i].classifications[0].subGenre.name;
 
         //asigno clase para cambiar estilo en funcion del genero
-        let divParaGenero = document.createElement("div");
-        if (genero == "Rock") {
-            divParaGenero.setAttribute("class", "tipoRock")
-        }
-        else if (genero == "Alternative") {
-            divParaGenero.setAttribute("class", "tipoAlternativo")
-        }
-        else if (genero == "Hip-Hop/Rap") {
-            divParaGenero.setAttribute("class", "tipoHipHopRap")
-        }
-        else {
-            divParaGenero.setAttribute("class", "tipoOtros")
-        }
+        //let divParaGenero = document.createElement("div");
+        
         //...........................................
 
 
         let divParaSegmento = document.createElement("div");
         let divParaSubGenero = document.createElement("div");
+        if (subGenero == "Hard Rock") {
+            divParaSubGenero.setAttribute("class", "tipoHardRock")
+        }
+        else if (subGenero == "Alternative Rock") {
+            divParaSubGenero.setAttribute("class", "tipoAlternativeRock")
+        }
+        else if (subGenero == "Pop") {
+            divParaSubGenero.setAttribute("class", "tipoPop")
+        }
+        else if (subGenero == "Hip-Hop/Rap") {
+            divParaSubGenero.setAttribute("class", "tipoHipHopRap")
+        }
+        else {
+            divParaSubGenero.setAttribute("class", "tipoOtros")
+        }
+
+
         let divParaInfoGenero = document.createElement("div");
 
-        let textoGenero = document.createTextNode(genero);
         let textoSegmento = document.createTextNode(segmento);
         let textoSubGenero = document.createTextNode(subGenero);
 
-        divParaGenero.appendChild(textoGenero);
         divParaSegmento.appendChild(textoSegmento);
         divParaSubGenero.appendChild(textoSubGenero);
 
-        divParaInfoGenero.appendChild(divParaGenero)
         divParaInfoGenero.appendChild(divParaSegmento)
         divParaInfoGenero.appendChild(divParaSubGenero)
 
@@ -184,10 +186,10 @@ function showEvents(events) {
         divParaFoto.setAttribute("class", "fotoEvento");
         elementoFoto.setAttribute("src", urlImagen);
         divParaFoto.appendChild(elementoFoto)
-        //console.log(events[i].images)
+ 
 
         // creo elemento titulo
-        let elementoTitulo = document.createElement("h3");
+        let elementoTitulo = document.createElement("h2");
         elementoTitulo.setAttribute("class", "rowspan=3");
         let textoTitulo = document.createTextNode(events[i].name);
         elementoTitulo.appendChild(textoTitulo);
@@ -211,7 +213,7 @@ function showEvents(events) {
         elementoHora.appendChild(textoHora);
 
         let elementoLugarFechaHora = document.createElement("li");
-        elementoLugarFechaHora.setAttribute = (" list-style", "none")
+        elementoLugarFechaHora.setAttribute = ("list-style", "none")
         elementoLugarFechaHora.appendChild(elementoLugar);
         elementoLugarFechaHora.appendChild(elementoFecha);
         elementoLugarFechaHora.appendChild(elementoHora);
