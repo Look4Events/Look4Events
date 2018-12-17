@@ -110,8 +110,9 @@ function searchByDateShowPosition() {
 }
 
 
-function searchByKeyword() {
-
+function showEventsByKeywordShowPosition() {
+    latlon = positionActual.coords.latitude + "," + positionActual.coords.longitude;
+    radius = "&radius=50&unit=km"
     let keyword = document.getElementById("keyword").value;
     $.ajax({
         type: "GET",
@@ -144,6 +145,8 @@ function showEventsByKeyword(events) {
             "</p>");
     }
 }
+
+ 
 
 function showEvents(events) {
     for (let i = 0; i < events.length; i++) {
