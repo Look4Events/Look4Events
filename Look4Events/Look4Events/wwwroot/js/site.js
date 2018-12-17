@@ -568,9 +568,11 @@ function addMarker(map, event, events) {
     let marker = new google.maps.Marker({
         position: new google.maps.LatLng(event._embedded.venues[0].location.latitude, event._embedded.venues[0].location.longitude),
         animation: google.maps.Animation.DROP,
-        map: map
+        map: map,
+        icon: '/images/free-map-marker-icon-green-darkerPEKE.png'
+
     });
-    marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+    //marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
     let texto = '';
     for (let i = 0; i < events.length; i++) {
         if (event._embedded.venues[0].name === events[i]._embedded.venues[0].name) {
