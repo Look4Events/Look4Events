@@ -137,12 +137,6 @@ function showEvents(events) {
         //elementoUrl.href = UrlEvento;
         elementoUrl.appendChild(textoEnlace);
         elementoUrl.setAttribute("target", "_blank");
-
-
-        //elementoUrl.setAttribute("id", "linkUrl");
-        //document.getElementById("linkUrl").setAttribute("href", UrlEvento)
-        //elementoUrl.setAttribute("href", UrlEvento)
-        //let textoUrl = document.createTextNode(UrlEvento);
         divParaUrl.appendChild(elementoUrl);
 
         //creo elemento genero
@@ -217,6 +211,7 @@ function showEvents(events) {
         elementoHora.appendChild(textoHora);
 
         let elementoLugarFechaHora = document.createElement("li");
+        elementoLugarFechaHora.setAttribute = (" list-style", "none")
         elementoLugarFechaHora.appendChild(elementoLugar);
         elementoLugarFechaHora.appendChild(elementoFecha);
         elementoLugarFechaHora.appendChild(elementoHora);

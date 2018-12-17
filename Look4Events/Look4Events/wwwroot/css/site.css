@@ -529,4 +529,9 @@ h3 {
             border-radius: 50%;
 
         }
-        
+
+.celdaDetalles {
+    font-family: 'Segoe UI';
+    text-align:center;
+    color:blue;
+}
