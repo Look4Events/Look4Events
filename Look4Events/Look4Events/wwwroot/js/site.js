@@ -109,8 +109,95 @@ function searchByDateShowPosition() {
     });
 }
 
-function showEvents(events) {
+
+
+
+
+function showEventsByKeywordShowPosition() {
+    latlon = positionActual.coords.latitude + "," + positionActual.coords.longitude;
+    radius = "&radius=50&unit=km"
+    let keyword = document.getElementById("keyword").value;
+    $.ajax({
+        type: "GET",
+        url: "https://app.ticketmaster.com/discovery/v2/events?apikey=h3I9tWkebYWN4j7RUCINFghyZEoQMjMi&keyword="
+            +keyword,
+        async: true,
+        dataType: "json",
+        success: function (json) {
+            let events = json._embedded.events;
+            console.log(events);
+            let e = document.getElementById("events");
+            e.innerHTML = json.page.totalElements + " events found.";
+            showEventsByKeyword(events);
+            jsonSaved = json;
+            initMap(positionActual, events);
+        },
+        error: function (xhr, status, err) {
+            console.log(err);
+        }
+    });
+   
+}
+function showEventsByKeyword(events) {
     for (let i = 0; i < events.length; i++) {
+        //creo elemento URL
+        let UrlEvento = events[i].url;
+        let textoEnlace = document.createTextNode("Ve el evento");
+        let divParaUrl = document.createElement("div");
+        let elementoUrl = document.createElement("a");
+
+
+        elementoUrl.setAttribute("href", UrlEvento);
+        elementoUrl.appendChild(textoEnlace);
+        elementoUrl.setAttribute("target", "_blank");
+
+        divParaUrl.appendChild(elementoUrl);
+
+        //creo elemento genero
+        let genero = events[i].classifications[0].genre.name;
+        let segmento = events[i].classifications[0].segment.name;
+        let subGenero = events[i].classifications[0].subGenre.name;
+
+        //asigno clase para cambiar estilo en funcion del genero
+        let divParaGenero = document.createElement("div");
+        if (genero == "Rock") {
+            divParaGenero.setAttribute("class", "tipoRock")
+        }
+        else if (genero == "Alternative") {
+            divParaGenero.setAttribute("class", "tipoAlternativo")
+        }
+        else if (genero == "Hip-Hop/Rap") {
+            divParaGenero.setAttribute("class", "tipoHipHopRap")
+        }
+        else {
+            divParaGenero.setAttribute("class", "tipoOtros")
+        }
+        //...........................................
+
+
+        let divParaSegmento = document.createElement("div");
+        let divParaSubGenero = document.createElement("div");
+        let divParaInfoGenero = document.createElement("div");
+
+        let textoGenero = document.createTextNode(genero);
+        let textoSegmento = document.createTextNode(segmento);
+        let textoSubGenero = document.createTextNode(subGenero);
+
+        divParaGenero.appendChild(textoGenero);
+        divParaSegmento.appendChild(textoSegmento);
+        divParaSubGenero.appendChild(textoSubGenero);
+
+        divParaInfoGenero.appendChild(divParaGenero)
+        divParaInfoGenero.appendChild(divParaSegmento)
+        divParaInfoGenero.appendChild(divParaSubGenero)
+
+        ////creo elemento foto
+        let urlImagen = events[i].images[0].url;
+        let divParaFoto = document.createElement("div");
+        let elementoFoto = document.createElement("img");
+        divParaFoto.setAttribute("class", "fotoEvento");
+        elementoFoto.setAttribute("src", urlImagen);
+        divParaFoto.appendChild(elementoFoto)
 
         // creo elemento titulo
         let elementoTitulo = document.createElement("h3");
@@ -118,24 +205,61 @@ function showEvents(events) {
         let textoTitulo = document.createTextNode(events[i].name);
         elementoTitulo.appendChild(textoTitulo);
 
-        // creo elemento parrafo
-        let elementoParrafo = document.createElement("li");
-        let textoParrafo = document.createTextNode(events[i].dates.start.localDate + " /  Hora: " + events[i].dates.start.localTime + " / Ciudad: " + events[i]._embedded.venues[0].city.name);
-        elementoParrafo.appendChild(textoParrafo);
+        // creo elemento lugar
+        let elementoLugar = document.createElement("h3");
+        elementoLugar.setAttribute("class", "lugar");
+        let textoLugar = document.createTextNode(events[i]._embedded.venues[0].city.name);
+        elementoLugar.appendChild(textoLugar);
+
+        // creo elemento fecha
+        let elementoFecha = document.createElement("h3");
+        elementoFecha.setAttribute("class", "fecha");
+        let textoFecha = document.createTextNode(events[i].dates.start.localDate);
+        elementoFecha.appendChild(textoFecha);
+
+        // creo elemento hora
+        let elementoHora = document.createElement("h3");
+        elementoHora.setAttribute("class", "hora");
+        let textoHora = document.createTextNode(events[i].dates.start.localTime);
+        elementoHora.appendChild(textoHora);
+
+        let elementoLugarFechaHora = document.createElement("li");
+        elementoLugarFechaHora.appendChild(elementoLugar);
+        elementoLugarFechaHora.appendChild(elementoFecha);
+        elementoLugarFechaHora.appendChild(elementoHora);
 
         // creo un div, les incluyo el titulo y el parrafo
+        let idEvento = events[i].id;
         let celdaEvento = document.createElement("button");
 
-        celdaEvento.setAttribute("onclick", "location.href='/Home/Prueba'");
+        celdaEvento.setAttribute("onclick", "showDetails('" + idEvento + "')")
         celdaEvento.setAttribute("class", "personal");
+        celdaEvento.appendChild(divParaInfoGenero);
+        celdaEvento.appendChild(divParaFoto);
         celdaEvento.appendChild(elementoTitulo);
-        celdaEvento.appendChild(elementoParrafo);
 
+        //creo un boton para que se oculten los detalles
+        let divParaBotonVolver = document.createElement("div");
+        let elementoBotonVolver = document.createElement("button");
+        elementoBotonVolver.setAttribute("onclick", "hideDetails()")
+        let textoBotonVolver = document.createTextNode("Volver");
+        elementoBotonVolver.appendChild(textoBotonVolver);
+        divParaBotonVolver.appendChild(elementoBotonVolver)
+
+        // creo un div, para incluir la info sobre detalles de evento
+        let celdaDetalles = document.createElement("div");
+        celdaDetalles.setAttribute("id", idEvento);
+        celdaDetalles.setAttribute("class", "celdaDetalles")
+        celdaDetalles.appendChild(elementoLugarFechaHora);
+        celdaDetalles.appendChild(divParaUrl);
+        celdaDetalles.appendChild(divParaBotonVolver);
+        celdaDetalles.setAttribute("style", "display:none;")
 
 
         let parrafo = document.createElement("div");
         parrafo.setAttribute("class", "column");
         parrafo.appendChild(celdaEvento);
+        parrafo.appendChild(celdaDetalles);
 
 
         if (i % 3 === 0) {
@@ -144,45 +268,319 @@ function showEvents(events) {
             elementoFila.appendChild(parrafo);
 
         }
-        document.getElementById("filaResults").appendChild(parrafo);
+        document.getElementById("events").appendChild(parrafo);
+        console.log()
+    }
+}
+
+ 
+
+function showEvents(events) {
+    for (let i = 0; i < events.length; i++) {
+              
+        //creo elemento URL
+        let UrlEvento = events[i].url;
+        let textoEnlace = document.createTextNode("Ve el evento");
+        let divParaUrl = document.createElement("div");
+        let elementoUrl = document.createElement("a");
+
+
+        elementoUrl.setAttribute("href", UrlEvento);
+        elementoUrl.appendChild(textoEnlace);
+        elementoUrl.setAttribute("target", "_blank");
+        
+        divParaUrl.appendChild(elementoUrl);
+
+        //creo elemento genero
+        let genero = events[i].classifications[0].genre.name;
+        let segmento = events[i].classifications[0].segment.name;
+        let subGenero = events[i].classifications[0].subGenre.name;
+
+        //asigno clase para cambiar estilo en funcion del genero
+        let divParaGenero = document.createElement("div");
+        if (genero == "Rock") {
+            divParaGenero.setAttribute("class", "tipoRock")
+        }
+        else if (genero == "Alternative") {
+            divParaGenero.setAttribute("class", "tipoAlternativo")
+        }
+        else if (genero == "Hip-Hop/Rap") {
+            divParaGenero.setAttribute("class", "tipoHipHopRap")
+        }
+        else {
+            divParaGenero.setAttribute("class", "tipoOtros")
+        }
+        //...........................................
+
+
+        let divParaSegmento = document.createElement("div");
+        let divParaSubGenero = document.createElement("div");
+        let divParaInfoGenero = document.createElement("div");
+
+        let textoGenero = document.createTextNode(genero);
+        let textoSegmento = document.createTextNode(segmento);
+        let textoSubGenero = document.createTextNode(subGenero);
+
+        divParaGenero.appendChild(textoGenero);
+        divParaSegmento.appendChild(textoSegmento);
+        divParaSubGenero.appendChild(textoSubGenero);
+
+        divParaInfoGenero.appendChild(divParaGenero)
+        divParaInfoGenero.appendChild(divParaSegmento)
+        divParaInfoGenero.appendChild(divParaSubGenero)
+
+        ////creo elemento foto
+        let urlImagen = events[i].images[0].url;
+        let divParaFoto = document.createElement("div");
+        let elementoFoto = document.createElement("img");
+        divParaFoto.setAttribute("class", "fotoEvento");
+        elementoFoto.setAttribute("src", urlImagen);
+        divParaFoto.appendChild(elementoFoto)
+
+        // creo elemento titulo
+        let elementoTitulo = document.createElement("h3");
+        elementoTitulo.setAttribute("class", "rowspan=3");
+        let textoTitulo = document.createTextNode(events[i].name);
+        elementoTitulo.appendChild(textoTitulo);
+
+        // creo elemento lugar
+        let elementoLugar = document.createElement("h3");
+        elementoLugar.setAttribute("class", "lugar");
+        let textoLugar = document.createTextNode(events[i]._embedded.venues[0].city.name);
+        elementoLugar.appendChild(textoLugar);
+
+        // creo elemento fecha
+        let elementoFecha = document.createElement("h3");
+        elementoFecha.setAttribute("class", "fecha");
+        let textoFecha = document.createTextNode(events[i].dates.start.localDate);
+        elementoFecha.appendChild(textoFecha);
+
+        // creo elemento hora
+        let elementoHora = document.createElement("h3");
+        elementoHora.setAttribute("class", "hora");
+        let textoHora = document.createTextNode(events[i].dates.start.localTime);
+        elementoHora.appendChild(textoHora);
+
+        let elementoLugarFechaHora = document.createElement("li");
+        elementoLugarFechaHora.appendChild(elementoLugar);
+        elementoLugarFechaHora.appendChild(elementoFecha);
+        elementoLugarFechaHora.appendChild(elementoHora);
+
+        // creo un div, les incluyo el titulo y el parrafo
+        let idEvento = events[i].id;
+        let celdaEvento = document.createElement("button");
+
+        celdaEvento.setAttribute("onclick", "showDetails('" + idEvento + "')")
+        celdaEvento.setAttribute("class", "personal");
+        celdaEvento.appendChild(divParaInfoGenero);
+        celdaEvento.appendChild(divParaFoto);
+        celdaEvento.appendChild(elementoTitulo);
+
+        //creo un boton para que se oculten los detalles
+        let divParaBotonVolver = document.createElement("div");
+        let elementoBotonVolver = document.createElement("button");
+        elementoBotonVolver.setAttribute("onclick", "hideDetails()")
+        let textoBotonVolver = document.createTextNode("Volver");
+        elementoBotonVolver.appendChild(textoBotonVolver);
+        divParaBotonVolver.appendChild(elementoBotonVolver)
+
+        // creo un div, para incluir la info sobre detalles de evento
+        let celdaDetalles = document.createElement("div");
+        celdaDetalles.setAttribute("id", idEvento);
+        celdaDetalles.setAttribute("class", "celdaDetalles")
+        celdaDetalles.appendChild(elementoLugarFechaHora);
+        celdaDetalles.appendChild(divParaUrl);
+        celdaDetalles.appendChild(divParaBotonVolver);
+        celdaDetalles.setAttribute("style", "display:none;")
+
+
+        let parrafo = document.createElement("div");
+        parrafo.setAttribute("class", "column");
+        parrafo.appendChild(celdaEvento);
+        parrafo.appendChild(celdaDetalles);
+
+
+        if (i % 3 === 0) {
+            let elementoFila = document.createElement("div");
+            elementoFila.setAttribute("class", "row col-xs-4");
+            elementoFila.appendChild(parrafo);
+
+        }
+        document.getElementById("events").appendChild(parrafo);
         console.log()
     }
 }
 
 function showEventsByDate(events) {
     for (let i = 0; i < events.length; i++) {
-        $("#events").append("<p>" + events[i].name +
-            " ---- "
-            + events[i]._embedded.venues[0].name +
-            " ---- "
-            + events[i].dates.start.localDate +
-            "</p>");
+        //$("#events").append("<p>" + events[i].name +
+        //    " ---- "
+        //    + events[i]._embedded.venues[0].name +
+        //    " ---- "
+        //    + events[i].dates.start.localDate +
+        //    "</p>");
+        //creo elemento URL
+        let UrlEvento = events[i].url;
+        let textoEnlace = document.createTextNode("Ve el evento");
+        let divParaUrl = document.createElement("div");
+        let elementoUrl = document.createElement("a");
+
+
+        elementoUrl.setAttribute("href", UrlEvento);
+        elementoUrl.appendChild(textoEnlace);
+        elementoUrl.setAttribute("target", "_blank");
+
+        divParaUrl.appendChild(elementoUrl);
+
+        //creo elemento genero
+        let genero = events[i].classifications[0].genre.name;
+        let segmento = events[i].classifications[0].segment.name;
+        let subGenero = events[i].classifications[0].subGenre.name;
+
+        //asigno clase para cambiar estilo en funcion del genero
+        let divParaGenero = document.createElement("div");
+        if (genero == "Rock") {
+            divParaGenero.setAttribute("class", "tipoRock")
+        }
+        else if (genero == "Alternative") {
+            divParaGenero.setAttribute("class", "tipoAlternativo")
+        }
+        else if (genero == "Hip-Hop/Rap") {
+            divParaGenero.setAttribute("class", "tipoHipHopRap")
+        }
+        else {
+            divParaGenero.setAttribute("class", "tipoOtros")
+        }
+        //...........................................
+
+
+        let divParaSegmento = document.createElement("div");
+        let divParaSubGenero = document.createElement("div");
+        let divParaInfoGenero = document.createElement("div");
+
+        let textoGenero = document.createTextNode(genero);
+        let textoSegmento = document.createTextNode(segmento);
+        let textoSubGenero = document.createTextNode(subGenero);
+
+        divParaGenero.appendChild(textoGenero);
+        divParaSegmento.appendChild(textoSegmento);
+        divParaSubGenero.appendChild(textoSubGenero);
+
+        divParaInfoGenero.appendChild(divParaGenero)
+        divParaInfoGenero.appendChild(divParaSegmento)
+        divParaInfoGenero.appendChild(divParaSubGenero)
+
+        ////creo elemento foto
+        let urlImagen = events[i].images[0].url;
+        let divParaFoto = document.createElement("div");
+        let elementoFoto = document.createElement("img");
+        divParaFoto.setAttribute("class", "fotoEvento");
+        elementoFoto.setAttribute("src", urlImagen);
+        divParaFoto.appendChild(elementoFoto)
+
+        // creo elemento titulo
+        let elementoTitulo = document.createElement("h3");
+        elementoTitulo.setAttribute("class", "rowspan=3");
+        let textoTitulo = document.createTextNode(events[i].name);
+        elementoTitulo.appendChild(textoTitulo);
+
+        // creo elemento lugar
+        let elementoLugar = document.createElement("h3");
+        elementoLugar.setAttribute("class", "lugar");
+        let textoLugar = document.createTextNode(events[i]._embedded.venues[0].city.name);
+        elementoLugar.appendChild(textoLugar);
+
+        // creo elemento fecha
+        let elementoFecha = document.createElement("h3");
+        elementoFecha.setAttribute("class", "fecha");
+        let textoFecha = document.createTextNode(events[i].dates.start.localDate);
+        elementoFecha.appendChild(textoFecha);
+
+        // creo elemento hora
+        let elementoHora = document.createElement("h3");
+        elementoHora.setAttribute("class", "hora");
+        let textoHora = document.createTextNode(events[i].dates.start.localTime);
+        elementoHora.appendChild(textoHora);
+
+        let elementoLugarFechaHora = document.createElement("li");
+        elementoLugarFechaHora.appendChild(elementoLugar);
+        elementoLugarFechaHora.appendChild(elementoFecha);
+        elementoLugarFechaHora.appendChild(elementoHora);
+
+        // creo un div, les incluyo el titulo y el parrafo
+        let idEvento = events[i].id;
+        let celdaEvento = document.createElement("button");
+
+        celdaEvento.setAttribute("onclick", "showDetails('" + idEvento + "')")
+        celdaEvento.setAttribute("class", "personal");
+        celdaEvento.appendChild(divParaInfoGenero);
+        celdaEvento.appendChild(divParaFoto);
+        celdaEvento.appendChild(elementoTitulo);
+
+        //creo un boton para que se oculten los detalles
+        let divParaBotonVolver = document.createElement("div");
+        let elementoBotonVolver = document.createElement("button");
+        elementoBotonVolver.setAttribute("onclick", "hideDetails()")
+        let textoBotonVolver = document.createTextNode("Volver");
+        elementoBotonVolver.appendChild(textoBotonVolver);
+        divParaBotonVolver.appendChild(elementoBotonVolver)
+
+        // creo un div, para incluir la info sobre detalles de evento
+        let celdaDetalles = document.createElement("div");
+        celdaDetalles.setAttribute("id", idEvento);
+        celdaDetalles.setAttribute("class", "celdaDetalles")
+        celdaDetalles.appendChild(elementoLugarFechaHora);
+        celdaDetalles.appendChild(divParaUrl);
+        celdaDetalles.appendChild(divParaBotonVolver);
+        celdaDetalles.setAttribute("style", "display:none;")
+
+
+        let parrafo = document.createElement("div");
+        parrafo.setAttribute("class", "column");
+        parrafo.appendChild(celdaEvento);
+        parrafo.appendChild(celdaDetalles);
+
+
+        if (i % 3 === 0) {
+            let elementoFila = document.createElement("div");
+            elementoFila.setAttribute("class", "row col-xs-4");
+            elementoFila.appendChild(parrafo);
+
+        }
+        document.getElementById("events").appendChild(parrafo);
+        console.log()
     }
+    
 }
 
 function initMap(position, events) {
     let mapDiv = document.getElementById('map');
     let map = new google.maps.Map(mapDiv, {
         center: { lat: position.coords.latitude, lng: position.coords.longitude },
-        zoom: 10
+        zoom: 12
 
     });
     for (let i = 0; i < events.length; i++) {
-        addMarker(map, events[i]);
+        addMarker(map, events[i], events);
     }
 }
-
-function addMarker(map, event) {
+function addMarker(map, event, events) {
     let marker = new google.maps.Marker({
         position: new google.maps.LatLng(event._embedded.venues[0].location.latitude, event._embedded.venues[0].location.longitude),
-        //infoWindow: new google.maps.InfoWindow({ content: json._embedded.events[i].name }),
         animation: google.maps.Animation.DROP,
-        map: map
-    });
-    marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
-    let infoWindow = new google.maps.InfoWindow({
-        content: '<a href="http://www.finofilipino.org">' + event.name + '</a>'
+        map: map,
+        icon: '/images/free-map-marker-icon-green-darkerPEKE.png'
 
+    });
+    //marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+    let texto = '';
+    for (let i = 0; i < events.length; i++) {
+        if (event._embedded.venues[0].name === events[i]._embedded.venues[0].name) {
+            texto += '<a href="' + events[i].url + '">' + events[i].name + '</a> </br>'
+        }
+    }
+    let infoWindow = new google.maps.InfoWindow({
+        content: texto
     });
     marker.addListener('click', function () {
         infoWindow.open(map, marker);
@@ -190,3 +588,27 @@ function addMarker(map, event) {
     console.log(marker);
 }
 getLocation();
+
+/*--------------------------------------------------------------*/
+function listadoOn() { /*filtro para mostrar listado de los resultados*/
+    $("#events").show();
+    $("#map").hide();
+}
+
+function listadoOff() { /*filtro para mostrar resultados en el mapa*/
+    $("#events").hide();
+    $("#map").show();
+}
+
+
+/*--------------------------------------------------------------*/
+function showDetails(id) { /*al hacer click en el boton del evento, se muestren los detalles*/
+
+    $("#" + id).show();
+
+}
+function hideDetails() { /*al hacer click en el boton del volver, se oculten los detalles*/
+
+    $(".celdaDetalles").hide();
+
+}

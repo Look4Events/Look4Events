@@ -3,7 +3,8 @@ for details on configuring this project to bundle and minify static web assets. 
 body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-color: aquamarine;
+    background-color: #FFEFD5;
+    font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
 }
 
 /* Wrapping element */
@@ -50,26 +51,26 @@ footer {
 .................................................................................................................*/
 
 /* Generic Styling, for Desktops/Laptops */
-table {
+/*table {
     width: 100%;
     border-collapse: collapse;
-}
+}*/
 /* Zebra striping */
-tr:nth-of-type(odd) {
+/*tr:nth-of-type(odd) {
     background: #eee;
-}
+}*/
 
-th {
+/*th {
     background: #333;
     color: white;
     font-weight: bold;
-}
+}*/
 
-td, th {
+/*td, th {
     padding: 6px;
     border: 1px solid #ccc;
     text-align: left;
-}
+}*/
 
 /* 
 Max width before this PARTICULAR table gets nasty
@@ -158,26 +159,23 @@ and also iPads specifically.
 }
 
 /*++++++++++++ _______ titulo grande multicolor en movimiento SVG _________ ++++++++++++++++++++++++++++++*/
-@import url(https://fonts.googleapis.com/css?family=Montserrat);
-
+/*@import url(https://fonts.googleapis.com/css?family=Montserrat);
 /*html, body {
     height: 100%;
     font-weight: 800;
 }
-
 body {
     background: #030321;
     font-family: Arial;
 }*/
 
-svg {
-    /*display: block;*/
+/*svg {*/
+/*display: block;
     font: 10.5em 'Montserrat';
-    /*width: 960px;
-    height: 300px;*/
+    width: 960px;
+    height: 300px;
     margin: 0 auto;
 }
-
 .text-copy {
     fill: none;
     stroke: white;
@@ -185,46 +183,39 @@ svg {
     stroke-width: 5px;
     stroke-dashoffset: 0%;
     animation: stroke-offset 5.5s infinite linear;
+    font-family: 'Montserrat';
 }
-
     .text-copy:nth-child(1) {
         stroke: #4D163D;
         animation-delay: -5;
     }
-
     .text-copy:nth-child(2) {
         stroke: #840037;
         animation-delay: -2s;
     }
-
     .text-copy:nth-child(3) {
         stroke: #BD0034;
         animation-delay: -3s;
     }
-
     .text-copy:nth-child(4) {
         stroke: #BD0034;
         animation-delay: -4s;
     }
-
     .text-copy:nth-child(5) {
         stroke: #FDB731;
         animation-delay: -5s;
     }
-
 @keyframes stroke-offset {
     100% {
         stroke-dashoffset: -35%;
     }
-}
+}*/
 
-/***************  tablas  ********************/
+/***************  tablas  *******************
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
-
 * {
     box-sizing: border-box;
 }
-
 /*body {
     font-family: 'Open Sans', sans-serif;
     color: #666;
@@ -237,9 +228,9 @@ svg {
 
 .wrapper {
     padding: 5px;
-    max-width: 960px;
+    max-width: 1200px;
     width: 100%;
-    margin: 20px auto;
+    margin: 10px auto;
 }
 
 header {
@@ -254,20 +245,10 @@ header {
 }
 
 .column {
-    flex: 1;
-    border: 1px solid gray;
+    flex: 1 0 40%;
+    border: 1px solid #FFE4B5;
     margin: 2px;
     padding: 10px;
-    &:first-child;
-
-{
-    margin-left: 0;
-}
-
-&:last-child {
-    margin-right: 0;
-}
-
 }
 
 
@@ -275,19 +256,7 @@ header {
     .columns .column {
         margin-bottom: 5px;
         flex-basis: 40%;
-        &:nth-last-child(2)
-
-
-{
-    margin-right: 0;
-}
-
-&:last-child {
-    flex-basis: 100%;
-    margin: 0;
-}
-
-}
+    }
 }
 
 @media screen and (max-width: 680px) {
@@ -307,29 +276,76 @@ header {
     font-family: Forte;
     font-size: large;
     border-radius: 9px;
+    background: #00b7f8;
     border: none;
+    border-bottom: 5px solid #0045a6;
     outline: none;
     width: 100%;
-    height: 100%;
+    /*height: 100%;*/
     cursor: pointer;
     font-size: 14px;
     font-weight: 700;
     color: #FFFFFF;
     text-transform: uppercase;
+    background: none;
+    /*background: linear-gradient(to right, #487fee, #32fa95);*/
+}
+
+    .personal:hover {
+        background: #0096f7;
+    }
+
+    .personal:active {
+        box-shadow: 2px 2px 2px #777, 0px 0px 35px 0px #00b7f8;
+        border-bottom: 1px solid #0045A6;
+        text-shadow: 0px 0px 5px #fff, 0px 0px 5px #fff;
+        transform: translateY(4px);
+        transition: all 0.1s ease 0s;
+        margin: 80px auto 76px auto;
+    }
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+.tipoRock {
     background: linear-gradient(to right, #487fee, #32fa95);
 }
+
+.tipoOtros {
+    background-image: linear-gradient(to right, #f6d365 0%, #fda085 51%, #f6d365 100%);
+}
+
+.tipoAlternativo {
+    background-image: linear-gradient(to right, #fbc2eb 0%, #a6c1ee 51%, #fbc2eb 100%);
+}
+
+.tipoHipHopRap {
+    background-image: linear-gradient(to right, #a1c4fd 0%, #c2e9fb 51%, #a1c4fd 100%);
+}
+/*-----------------------------------*/
+.lugar {
+}
+
+.fecha {
+}
+
+.hora {
+}
+/*-----------------------------------*/
+/*-----------------------------------*/
 
 .botonBuscar {
     display: inline-block;
     border-radius: 4px;
     background: #f4511e;
-    background-color: #f4511e;
+    background-color: #96dae4;
     border: none;
     color: #FFFFFF;
     text-align: center;
-    font-size: 28px;
-    padding: 20px;
-    width: 200px;
+    font-size: 22px;
+    padding: 5px;
+    width: 120px;
     transition: all 0.5s;
     cursor: pointer;
     margin: 5px;
@@ -354,7 +370,7 @@ select {
 #map {
     position: relative;
     overflow: hidden;
-    height: 200px;
+    height: 400px;
     width: 100%;
 }
 
@@ -370,6 +386,8 @@ select {
     Hide captions
     .carousel-caption {
         display: none;
+        margin-left: 20px;
+        margin-right: 20px;
     }
 }
 
@@ -394,5 +412,102 @@ select {
 /*---------------------------------------------------------------
 ---------------------------------------------------------------*/
 #barraMenuTop {
-    font-family: Batang;
+    font-family: 'Segoe UI';
+    font-size: larger;
 }
+
+
+.fotoEvento img {
+    width: 95%;
+}
+
+h3 {
+    text-decoration: underline;
+    color: #6d70c6;
+}
+
+
+/*------------------------------------*/
+
+
+/*------------- style para radio button al cambiar de vista ------------------------*/
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+@keyframes click-wave {
+    0% {
+        height: 40px;
+        width: 40px;
+        opacity: 0.35;
+        position: relative;
+    }
+
+    100% {
+        height: 200px;
+        width: 200px;
+        margin-left: -80px;
+        margin-top: -80px;
+        opacity: 0;
+    }
+}
+
+.option-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: relative;
+    top: 13.33333px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 40px;
+    width: 40px;
+    transition: all 0.15s ease-out 0s;
+    background: #cbd1d8;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 0.5rem;
+    outline: none;
+    position: relative;
+    z-index: 1000;
+}
+
+    .option-input:hover {
+        background: #9faab7;
+    }
+
+    .option-input:checked {
+        background: #40e0d0;
+    }
+
+        .option-input:checked::before {
+            height: 40px;
+            width: 40px;
+            position: absolute;
+            content: '✔';
+            display: inline-block;
+            font-size: 26.66667px;
+            text-align: center;
+            line-height: 40px;
+        }
+
+        .option-input:checked::after {
+            -webkit-animation: click-wave 0.65s;
+            -moz-animation: click-wave 0.65s;
+            animation: click-wave 0.65s;
+            background: #40e0d0;
+            content: '';
+            display: block;
+            position: relative;
+            z-index: 100;
+        }
+
+    .option-input.radio {
+        border-radius: 50%;
+    }
+
+        .option-input.radio::after {
+            border-radius: 50%;
+        }

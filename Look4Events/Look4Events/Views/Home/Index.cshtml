@@ -2,29 +2,16 @@
     ViewData["Title"] = "Home Page";
 }
 <link rel="stylesheet" href="~/css/site.css" />
-<div class="img-responsive" id="cabecera">
-    <div>
-        <a href=""><img class="img-responsive" src="http://bbkbootcamp.com/wp-content/uploads/2015/03/cropped-C4J_LOGO_512px_Prueba_1.png" /></a>
-    </div>
-    <div id="title">
-        @*<h1 class="title">Home</h1>*@
-    </div>
-    <hr class="second" />
-</div>
-<div>
-</div>
 @*ääääääääää_______lugar donde se muestra el mapa______äääääääääääääääää*@
-<p id="location">AQUÍ MAPA</p>
-<div id="map"></div>
-<div id="events"></div>
-@*-----------------------------------------------------------------------------*@
-<div class="wrapper">
+<p id="location"></p>
+<div id="map" style="display:none;"></div>
+@*<div id="events"></div>*@
+@*----------- listado de resultado ------------------------------------------------------------------*@
+<div>
     <header>
         <h2>Eventos:</h2>
     </header>
-    <section id="filaResults" class="columns">
-        @*<div class="column">*@
-        @*<ul id="filaResults" class=list-group></ul>*@
-        @*</div>*@
-    </section>
+    <section id="events" class="columns"></section>
+    <section id="filaDetails" class="columns" style="display:none;"></section>
 </div>
+@*------------------------------------*@</div>
