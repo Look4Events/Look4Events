@@ -51,26 +51,26 @@ footer {
 .................................................................................................................*/
 
 /* Generic Styling, for Desktops/Laptops */
-table {
+/*table {
     width: 100%;
     border-collapse: collapse;
-}
+}*/
 /* Zebra striping */
-tr:nth-of-type(odd) {
+/*tr:nth-of-type(odd) {
     background: #eee;
-}
+}*/
 
-th {
+/*th {
     background: #333;
     color: white;
     font-weight: bold;
-}
+}*/
 
-td, th {
+/*td, th {
     padding: 6px;
     border: 1px solid #ccc;
     text-align: left;
-}
+}*/
 
 /* 
 Max width before this PARTICULAR table gets nasty
@@ -159,7 +159,7 @@ and also iPads specifically.
 }
 
 /*++++++++++++ _______ titulo grande multicolor en movimiento SVG _________ ++++++++++++++++++++++++++++++*/
-@import url(https://fonts.googleapis.com/css?family=Montserrat);
+/*@import url(https://fonts.googleapis.com/css?family=Montserrat);
 
 /*html, body {
     height: 100%;
@@ -171,11 +171,11 @@ body {
     font-family: Arial;
 }*/
 
-svg {
-    /*display: block;*/
+/*svg {*/
+    /*display: block;
     font: 10.5em 'Montserrat';
-    /*width: 960px;
-    height: 300px;*/
+    width: 960px;
+    height: 300px;
     margin: 0 auto;
 }
 
@@ -218,9 +218,9 @@ svg {
     100% {
         stroke-dashoffset: -35%;
     }
-}
+}*/
 
-/***************  tablas  ********************/
+/***************  tablas  *******************
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
 * {
@@ -239,7 +239,7 @@ svg {
 
 .wrapper {
     padding: 5px;
-    max-width: 960px;
+    max-width: 1200px;
     width: 100%;
     margin: 10px auto;
 }
@@ -351,13 +351,13 @@ header {
     display: inline-block;
     border-radius: 4px;
     background: #f4511e;
-    background-color: #f4511e;
+    background-color: #96dae4;
     border: none;
     color: #FFFFFF;
     text-align: center;
-    font-size: 28px;
-    padding: 20px;
-    width: 200px;
+    font-size: 22px;
+    padding: 5px;
+    width: 120px;
     transition: all 0.5s;
     cursor: pointer;
     margin: 5px;
@@ -398,6 +398,8 @@ select {
     Hide captions
     .carousel-caption {
         display: none;
+        margin-left: 20px;
+        margin-right: 20px;
     }
 }
 
@@ -406,6 +408,8 @@ select {
     background-image: url(https://www.mexticket.com/wp-content/uploads/2017/02/CONCIERTO-MEXTICKET.png);
     /*Para dejar la imagen de fondo centrada, vertical y horizontalmente*/
     background-position: center center;
+
+
     /*Para que la imagen de fondo no se repita*/
     background-repeat: no-repeat;
     /*La imagen se fija en la ventana de visualización para que la altura de la imagen no supere a la del contenido*/
@@ -423,7 +427,8 @@ select {
 ---------------------------------------------------------------*/
 #barraMenuTop {
     font-family: 'Segoe UI';
-    font-size:larger;
+    font-size: larger;
+   
 }
 
 
@@ -431,8 +436,9 @@ select {
     width:95%;
 }
 
-h3{
-    text-decoration:underline;
+h3 {
+    text-decoration: underline;
+    color: #6d70c6;
 }
 
 

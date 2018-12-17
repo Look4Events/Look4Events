@@ -124,15 +124,26 @@ function showEvents(events) {
         //console.log(events[i].images);
         //console.log();
         //...........................................
-        
 
         //creo elemento URL
         let UrlEvento = events[i].url;
+        let textoEnlace = document.createTextNode("Ve el evento");
         let divParaUrl = document.createElement("div");
         let elementoUrl = document.createElement("a");
-        elementoUrl.setAttribute("href", UrlEvento)
-        let textoUrl = document.createTextNode(UrlEvento);
-        divParaUrl.appendChild(textoUrl);
+        //divParaUrl.setAttribute("class", "urlTickets");
+
+
+        elementoUrl.setAttribute("href", UrlEvento);
+        //elementoUrl.href = UrlEvento;
+        elementoUrl.appendChild(textoEnlace);
+        elementoUrl.setAttribute("target", "_blank");
+
+
+        //elementoUrl.setAttribute("id", "linkUrl");
+        //document.getElementById("linkUrl").setAttribute("href", UrlEvento)
+        //elementoUrl.setAttribute("href", UrlEvento)
+        //let textoUrl = document.createTextNode(UrlEvento);
+        divParaUrl.appendChild(elementoUrl);
 
         //creo elemento genero
         let genero = events[i].classifications[0].genre.name;
@@ -179,7 +190,7 @@ function showEvents(events) {
         divParaFoto.setAttribute("class", "fotoEvento");
         elementoFoto.setAttribute("src", urlImagen);
         divParaFoto.appendChild(elementoFoto)
-        console.log(events[i].images)
+        //console.log(events[i].images)
 
         // creo elemento titulo
         let elementoTitulo = document.createElement("h3");
@@ -205,27 +216,22 @@ function showEvents(events) {
         let textoHora = document.createTextNode(events[i].dates.start.localTime);
         elementoHora.appendChild(textoHora);
 
-        // creo elemento parrafo
-        //let elementoParrafo = document.createElement("li");
-        //let textoParrafo = document.createTextNode(events[i].dates.start.localDate + " /  Hora: " + events[i].dates.start.localTime + " / Ciudad: " + events[i]._embedded.venues[0].city.name);
-        //elementoParrafo.appendChild(textoParrafo);
-
-        let elementoParrafo = document.createElement("li");
-        elementoParrafo.appendChild(elementoLugar);
-        elementoParrafo.appendChild(elementoFecha);
-        elementoParrafo.appendChild(elementoHora);
+        let elementoLugarFechaHora = document.createElement("li");
+        elementoLugarFechaHora.appendChild(elementoLugar);
+        elementoLugarFechaHora.appendChild(elementoFecha);
+        elementoLugarFechaHora.appendChild(elementoHora);
 
         // creo un div, les incluyo el titulo y el parrafo
+        let idEvento = events[i].id;
         let celdaEvento = document.createElement("button");
-        celdaEvento.setAttribute("onclick", "showDetails()")
-        //celdaEvento.setAttribute("onclick", "location.href='/Home/Prueba'");
+       
+        celdaEvento.setAttribute("onclick", "showDetails('"+idEvento+"')")
         celdaEvento.setAttribute("class", "personal");
         celdaEvento.appendChild(divParaInfoGenero);
         celdaEvento.appendChild(divParaFoto);
         celdaEvento.appendChild(elementoTitulo);
-        //celdaEvento.appendChild(elementoParrafo);
-        //celdaEvento.appendChild(divParaUrl);
 
+        //creo un boton para que se oculten los detalles
         let divParaBotonVolver = document.createElement("div");
         let elementoBotonVolver = document.createElement("button");
         elementoBotonVolver.setAttribute("onclick", "hideDetails()")
@@ -233,14 +239,11 @@ function showEvents(events) {
         elementoBotonVolver.appendChild(textoBotonVolver);
         divParaBotonVolver.appendChild(elementoBotonVolver)
 
-        // creo un div, les incluyo toda la info detalles de evento
+        // creo un div, para incluir la info sobre detalles de evento
         let celdaDetalles = document.createElement("div");
+        celdaDetalles.setAttribute("id", idEvento);
         celdaDetalles.setAttribute("class", "celdaDetalles")
-        //celdaDetalles.setAttribute("class", "personal");
-        //celdaDetalles.appendChild(divParaInfoGenero);
-        //celdaDetalles.appendChild(divParaFoto);
-        //celdaDetalles.appendChild(elementoTitulo);
-        celdaDetalles.appendChild(elementoParrafo);
+        celdaDetalles.appendChild(elementoLugarFechaHora);
         celdaDetalles.appendChild(divParaUrl);
         celdaDetalles.appendChild(divParaBotonVolver);
         celdaDetalles.setAttribute("style", "display:none;")
@@ -251,10 +254,6 @@ function showEvents(events) {
         parrafo.appendChild(celdaEvento);
         parrafo.appendChild(celdaDetalles);
 
-        //let parrafoDetalles = document.createElement("div");
-        //parrafo.setAttribute("class", "column");
-        //parrafo.appendChild(celdaDetalles);
-
 
         if (i % 3 === 0) {
             let elementoFila = document.createElement("div");
@@ -263,7 +262,6 @@ function showEvents(events) {
 
         }
         document.getElementById("filaResults").appendChild(parrafo);
-        //document.getElementById("filaDetails").appendChild(parrafoDetalles);
         console.log()
     }
 }
@@ -310,22 +308,25 @@ function addMarker(map, event) {
 getLocation();
 
 
-function listadoOn() {
+/*--------------------------------------------------------------*/
+function listadoOn() { /*filtro para mostrar listado de los resultados*/
     $("#filaResults").show();
     $("#map").hide();
 }
 
-function listadoOff() {
+function listadoOff() { /*filtro para mostrar resultados en el mapa*/
     $("#filaResults").hide();
     $("#map").show();
 }
 
-function showDetails() {
 
-    $(".celdaDetalles").show();
+/*--------------------------------------------------------------*/
+function showDetails(id) { /*al hacer click en el boton del evento, se muestren los detalles*/
+
+    $("#"+id).show();
 
 }
-function hideDetails() {
+function hideDetails() { /*al hacer click en el boton del volver, se oculten los detalles*/
 
     $(".celdaDetalles").hide();
 
