@@ -50,7 +50,7 @@ function showPosition(position) {
         success: function (json) {
             console.log(json);
             let events = json._embedded.events;
-            let e = document.getElementById("event");
+            let e = document.getElementById("events");
             e.innerHTML = json.page.totalElements + " events found.<br/>";
             showEvents(events);
             positionActual = position;
@@ -100,7 +100,7 @@ function searchByDateShowPosition() {
         success: function (json) {
             let events = json._embedded.events;
             console.log(events);
-            let e = document.getElementById("event");
+            let e = document.getElementById("events");
             e.innerHTML = json.page.totalElements + " events found.<br/>";
             showEventsByDate(events);
             jsonSaved = json;
@@ -125,7 +125,7 @@ function showEventsByKeywordShowPosition() {
         success: function (json) {
             let events = json._embedded.events;
             console.log(events);
-            let e = document.getElementById("event");
+            let e = document.getElementById("events");
             e.innerHTML = json.page.totalElements + " events found.<br/>";
             showEventsByKeyword(events);
             jsonSaved = json;
@@ -259,7 +259,7 @@ function showEventsByKeyword(events) {
         //creo un boton para que se oculten los detalles
         let divParaBotonVolver = document.createElement("div");
         let elementoBotonVolver = document.createElement("button");
-        elementoBotonVolver.setAttribute("onclick", "hideDetails()")
+        elementoBotonVolver.setAttribute("onclick", "hideDetails('" + idEvento + "')");
         let textoBotonVolver = document.createTextNode("Volver");
         elementoBotonVolver.appendChild(textoBotonVolver);
         divParaBotonVolver.appendChild(elementoBotonVolver)
@@ -560,7 +560,7 @@ function showEvents(events) {
         //creo un boton para que se oculten los detalles
         let divParaBotonVolver = document.createElement("div");
         let elementoBotonVolver = document.createElement("button");
-        elementoBotonVolver.setAttribute("onclick", "hideDetails()")
+        elementoBotonVolver.setAttribute("onclick", "hideDetails('" + idEvento + "')");
         let textoBotonVolver = document.createTextNode("Volver");
         elementoBotonVolver.appendChild(textoBotonVolver);
         divParaBotonVolver.appendChild(elementoBotonVolver)
@@ -603,7 +603,7 @@ function showEventsByDate(events) {
         //console.log(events[i].dates.start.localDate);
         //console.log(events[i].dates.start.localTime);
         //console.log(events[i].images);
-        //console.log();
+        console.log();
         //...........................................
 
         //creo elemento URL
@@ -705,7 +705,7 @@ function showEventsByDate(events) {
         let idEvento = events[i].id;
         let celdaEvento = document.createElement("button");
 
-        celdaEvento.setAttribute("onclick", "showDetails('" + idEvento + "')")
+        celdaEvento.setAttribute("onclick", "showDetails('" + idEvento + "')");
         celdaEvento.setAttribute("class", "personal");
         celdaEvento.appendChild(divParaInfoGenero);
         celdaEvento.appendChild(divParaFoto);
@@ -714,7 +714,7 @@ function showEventsByDate(events) {
         //creo un boton para que se oculten los detalles
         let divParaBotonVolver = document.createElement("div");
         let elementoBotonVolver = document.createElement("button");
-        elementoBotonVolver.setAttribute("onclick", "hideDetails()")
+        elementoBotonVolver.setAttribute("onclick", "hideDetails('" + idEvento + "')");
         let textoBotonVolver = document.createTextNode("Volver");
         elementoBotonVolver.appendChild(textoBotonVolver);
         divParaBotonVolver.appendChild(elementoBotonVolver)
@@ -786,12 +786,12 @@ getLocation();
 
 /*--------------------------------------------------------------*/
 function listadoOn() { /*filtro para mostrar listado de los resultados*/
-    $("#filaResults").show();
+    $("#listadooEvents").show();
     $("#map").hide();
 }
 
 function listadoOff() { /*filtro para mostrar resultados en el mapa*/
-    $("#filaResults").hide();
+    $("#listadooEvents").hide();
     $("#map").show();
 }
 
@@ -802,8 +802,8 @@ function showDetails(id) { /*al hacer click en el boton del evento, se muestren 
     $("#"+id).show();
 
 }
-function hideDetails() { /*al hacer click en el boton del volver, se oculten los detalles*/
+function hideDetails(id) { /*al hacer click en el boton del volver, se oculten los detalles*/
 
-    $(".celdaDetalles").hide();
+    $("#" + id).hide();
 
 }
