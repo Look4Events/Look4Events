@@ -3,7 +3,7 @@ for details on configuring this project to bundle and minify static web assets. 
 body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-color: #FFEFD5;
+    background-color: #fafbfd; /*#FFEFD5;*/
     font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
 }
 
@@ -257,12 +257,26 @@ header {
 
 .column {
     flex: 1 0 40%;
-    border: 1px solid #FFE4B5;
+    border: 1px solid #f8f8ff;
     border-radius: 20px;
     padding: 10px;
     box-shadow: 3px 3px 5px 6px #ccc;
     margin: 20px;
 }
+
+#buscarPorKeyWord {
+    box-shadow: 3px 3px 5px 6px #b5c1d2;
+}
+#buscarPorLugar {
+    box-shadow: 3px 3px 5px 6px #b5c1d2;
+}
+#buscarPorVista {
+    box-shadow: 3px 3px 5px 6px #b5c1d2;
+}
+#fechaEnCalendario {
+    box-shadow: 3px 3px 5px 6px #b5c1d2;
+}
+
 
 
 @media screen and (max-width: 980px) {
@@ -306,14 +320,14 @@ header {
     /*background: #0096f7;*/
 }
 
-.personal:active {
+/*.personal:active {
     box-shadow: 2px 2px 2px #777, 0px 0px 35px 0px #00b7f8;
     border-bottom: 1px solid #0045A6;
     text-shadow: 0px 0px 5px #fff, 0px 0px 5px #fff;
     transform: translateY(4px);
     transition: all 0.1s ease 0s;
     margin: 80px auto 76px auto;
-}
+}*/
 
 
 
@@ -387,12 +401,42 @@ header {
 
 #fechaHoy {
     width: 100%;
-    
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 20pt;
 }
+.custom-select {
+    width: 100%;
+    font-family: 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 10pt;
+}
+#BuscarporFecha {
+    display: inline-block;
+    border-radius: 4px;
+    background: #f4511e;
+    background-color: #96dae4;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 22px;
+    padding: 5px;
+    width: 120px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    max-width: 100%;
+}
+
 
 #calendario {
     width: 70%;
-    
+}
+#filtroPorLugar {
+    width: 95%;
+}
+
+#keyword {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 20pt;
 }
 
 select {
@@ -477,19 +521,35 @@ select {
 
 /*---------------------------------------------------------------
 --------------------- imagenes que sacan de la API de eventos ------------------------------------------*/
+
 .fotoEvento img{
     width:95%;
     padding:63px;
 }
 
+
 h2 {
     color: #6d70c6;
     font-size:large;
+    align-content:center;
+    align-items:center;
+    text-align:center;
+    margin-bottom:9px;
+}
+header h2{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size:20px;
+}
+
+li {
+    list-style: none;
 }
 
 
 /*------------------------------------*/
-
+.segmento {
+    color: black;
+}
 
 
 
@@ -581,4 +641,5 @@ h2 {
     text-align:center;
     color:dimgrey;
 }
+
 
