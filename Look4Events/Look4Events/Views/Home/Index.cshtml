@@ -2,16 +2,22 @@
     ViewData["Title"] = "Home Page";
 }
 <link rel="stylesheet" href="~/css/site.css" />
+
+
+
+
+
 @*ääääääääää_______lugar donde se muestra el mapa______äääääääääääääääää*@
+
 <p id="location"></p>
 <div id="map" style="display:none;"></div>
 @*<div id="events"></div>*@
-@*----------- listado de resultado ------------------------------------------------------------------*@
-<div>
+<div id="listadoEvents">
     <header>
-        <h2>Eventos:</h2>
+        <h1>Eventos:</h1>
     </header>
-    <section id="events" class="columns"></section>
+    <section id="eventsFound"></section>
+    <section id="totalEvents"></section>
+    <section id="events" class="columns" ></section>
     <section id="filaDetails" class="columns" style="display:none;"></section>
 </div>
-@*------------------------------------*@</div>

@@ -47,12 +47,12 @@
     @*--------------------------- image fondo --------------------------------------------------*@
     <div class="img-responsive" id="cabecera">
         <div>
-            <a href=""><img class="img-responsive" src="http://bbkbootcamp.com/wp-content/uploads/2015/03/cropped-C4J_LOGO_512px_Prueba_1.png" /></a>
+            <a href=""><img class="img-responsive" src="~/images/LogoInicialBig.png" /></a>
         </div>
         <div id="title">
             @*<h1 class="title">Home</h1>*@
         </div>
-        <hr class="second" />
+        
     </div>
     @*-----------------------------------------------------------------------------*@
     @*+++++++++++++++++++ titulo multicolor ++++++++++++++++++++++++++++++++++*@
@@ -79,29 +79,31 @@
     <div class="wrapper">
         <header>
             <h1>Búsqueda de eventos</h1>
+
         </header>
         <section class="columns">
-            <div class="column">
+            <div class="column" id="buscarPorKeyWord">
                 <p>
+                    @*<form role="search">*@
                     <div>
-                        <input type="search" id="keyword" 
-                                placeholder="Buscar por keyword..."
-                                aria-label="Buscar en el contenido del sitio">
-                        <button class="botonBuscar" onclick="showEventsByKeywordShowPosition()">Buscar</button>
+                        <input type="search" id="keyword"
+                               placeholder="Buscar por keyword..."
+                               aria-label="Buscar en el contenido del sitio">
+                        <button class="botonBuscar" onclick="searchEventsByKeywordShowPosition()">Buscar</button>
+                        @*<button class="botonBuscar" onclick="initMap()">Buscar</button>*@
                     </div>
+                    @*</form>*@
                 </p>
             </div>
-            <div class="column">
+            <div class="column" id="fechaEnCalendario">
                 <p id="fechaHoy">Today: @DateTime.Now.Day / @DateTime.Now.Month / @DateTime.Now.Year</p>
                 <p></p>
                 <p class="custom-select">
-                    FROM: <input type="date" id="fechaIn" /><br />
-                    <br />
-                    TO: <input type="date" id="fechaFin" />
+                    FROM: <input type="date" id="fechaIn" />TO: <input type="date" id="fechaFin" />
                     <button id="BuscarporFecha" onclick="searchByDateShowPosition()">Buscar</button>
                 </p>
             </div>
-            <div class="column">
+            <div class="column" id="buscarPorVista">
                 <label>
                     <input type="radio" onclick="listadoOn()" class="option-input radio" name="example" checked />
                     ver Listado<br />
@@ -111,24 +113,15 @@
                     ver Mapa<br />
                 </label>
             </div>
-            @*<div class="column">
-                    <p>
-                        <form name="formulario">
-                            <input type="radio" onclick="listadoOn()" ;" id="listado" name="TipoDeVista" value="verListado" checked> ver Listado<br />
-                            <input type="radio" onclick="listadoOff()" id="mapa" name="TipoDeVista" value="verMapa"> ver Mapa<br />
-                        </form>
-                    </p>
-                </div>*@
 
-            @*</div>*@
 
-            <div class="column">
-                <p>
-                    <select form-group>
+            @*<div class="column" id="buscarPorLugar">
+                <p id="filtroPorLugar">
+                    <select>
                         <option value="buscarEnBilbao">Bilbao</option>
                     </select>
                 </p>
-            </div>
+            </div>*@
         </section>
     </div>
     @*+++++++++++++++++++++++++++++++++++++++++++++++++++++*@
