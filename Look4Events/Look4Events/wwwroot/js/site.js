@@ -641,3 +641,47 @@ function hideDetails(id) { /*al hacer click en el boton del volver, se oculten l
     $("#" + id).hide();
 
 }
+
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker
+            .register('/sw.js')
+            .then(reg => console.log('ServiceWorker registration successful with scope: ', reg.scope))
+            .catch(err => console.log('ServiceWorker registration Error'))
+
+    })
+}
+
+Notification.requestPermission(status => {
+    console.log('Notification permission status:', status);
+});
+
+function displayNotification() {
+    if (Notification.permission == 'granted') {
+        navigator.serviceWorker.getRegistration().then(function (reg) {
+            let options = {
+                body: 'Tenemos un nuevo evento que te puede interesar!',
+                icon: 'images/icono.png',
+                vibrate: [100, 50, 100],
+                data: {
+                    dateOfArrival: Date.now(),
+                    primaryKey: 1
+                },
+                actions: [
+                    {
+                        action: 'explore', title: 'Go to the site',
+                        icon: 'images/checkmark.png'
+                    },
+                    {
+                        action: 'close', title: 'Close the notification',
+                        icon: 'images/xmark.png'
+                    },
+                ]
+            };
+            reg.showNotification('Look4Events', options);
+        });
+    }
+}
+
+displayNotification();
